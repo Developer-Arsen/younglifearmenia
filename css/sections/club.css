@@ -1,0 +1,39 @@
+/* Club nights.
+   The camp sections are daylight and open field; this one is the evening
+   indoors, so it sits on navy and the photographs are set in a single
+   uneven row — a strip of one evening rather than a grid of examples.
+   Widths are deliberately unequal (1.35 / 1 / 1.1) so it reads as a
+   sequence of moments, not a set of tiles. */
+
+.club{background:var(--brand-800);position:relative;overflow:hidden}
+.club::before{
+  content:"";position:absolute;inset:0;opacity:.22;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,var(--brand-600),transparent 60%);
+}
+.club-in{position:relative}
+
+.club-copy{display:grid;gap:1.5rem;margin-top:clamp(2rem,4vw,3rem)}
+.club-copy p{margin:0;color:rgba(251,247,239,.78)}
+.club-copy p + p{margin-top:1.1em}
+
+/* the shape of an evening, in four words */
+.club-run{display:flex;flex-wrap:wrap;gap:.6rem;margin:0;padding:0;list-style:none}
+.club-run li{
+  font-family:var(--font-label);font-size:var(--fs-xs);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--cream);
+  border:2px solid var(--line-dark);border-radius:var(--r-pill);
+  padding:.55rem 1.1rem;
+}
+
+.club-strip{
+  display:grid;gap:1rem;margin-top:clamp(2.5rem,5vw,4rem);
+  grid-template-columns:minmax(0,1fr);
+}
+.club-strip figure{margin:0}
+.club-strip .media{aspect-ratio:3/2;border-radius:var(--r-md)}
+.club-strip figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:rgba(251,247,239,.62);margin-top:.6rem;line-height:1.45;
+}
+
+.club-foot{margin-top:clamp(2rem,4vw,3rem)}

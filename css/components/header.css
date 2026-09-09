@@ -1,0 +1,57 @@
+/* Fixed header: brand, desktop nav, language switcher, burger. */
+.header{
+  position:fixed;inset:0 0 auto 0;z-index:90;
+  transition:background-color .3s ease,box-shadow .3s ease,border-color .3s ease;
+  border-bottom:1px solid transparent;
+}
+.header::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(3,38,56,.55),transparent);
+  transition:opacity .3s ease;
+}
+.header.solid{background:var(--cream);border-bottom-color:var(--line);box-shadow:var(--shadow-sm)}
+.header.solid::before{opacity:0}
+.header-in{
+  display:flex;align-items:center;gap:1.25rem;
+  min-height:82px;padding-block:.5rem;
+  max-width:1560px;
+}
+.brand{
+  display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--cream);
+  margin-right:auto;min-height:var(--tap);
+}
+.header.solid .brand{color:var(--brand-800)}
+.brand-mark{
+  width:44px;height:44px;flex:none;border-radius:12px;
+  background:var(--green);color:var(--brand-900);
+  display:grid;place-items:center;font-weight:800;font-size:1.05rem;letter-spacing:-.03em;
+  box-shadow:0 4px 12px rgba(3,38,56,.28);
+}
+.brand-name{display:flex;flex-direction:column;line-height:1.05}
+.brand-name b{font-size:1.2rem;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.brand-name span{
+  font-family:var(--font-label);font-size:.75rem;letter-spacing:.18em;
+  text-transform:uppercase;opacity:.8;font-weight:500;
+}
+
+.nav{display:none;gap:.15rem}
+.nav a{
+  display:flex;align-items:center;min-height:48px;padding:.4rem .45rem;
+  text-decoration:none;font-weight:700;font-size:.9375rem;color:var(--cream);
+  border-radius:var(--r-sm);white-space:nowrap;
+}
+.header.solid .nav a{color:var(--ink)}
+.nav a:hover{background:rgba(251,247,239,.16)}
+.header.solid .nav a:hover{background:var(--cream-2);color:var(--brand-700)}
+
+.header .btn--donate{display:none}
+
+.burger{
+  display:inline-flex;flex-direction:column;justify-content:center;gap:6px;
+  width:var(--tap);height:var(--tap);flex:none;
+  border:1px solid rgba(251,247,239,.3);background:rgba(251,247,239,.16);
+  border-radius:var(--r-md);cursor:pointer;padding:0 14px;
+}
+.header.solid .burger{background:var(--cream-2);border-color:var(--line)}
+.burger i{display:block;height:2.5px;background:var(--cream);border-radius:2px;transition:transform .2s ease}
+.header.solid .burger i{background:var(--brand-800)}

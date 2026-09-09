@@ -1,0 +1,98 @@
+/* All breakpoints in one place: 600 / 900 / 1180 / 1280 / 1440 up, plus the small-phone overrides. Everything above is written mobile-first. */
+@media (min-width:600px){
+  .camp-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .colour-set{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .club-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .club-strip figure:first-child{grid-column:1 / -1}
+  .gives{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .prayers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .story-photos{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  .camp-feats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hist-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hero-actions .btn{flex:0 1 auto;min-width:240px}
+  .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ways{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:900px){
+  .camp-strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .header .btn--donate{display:inline-flex}
+  .story-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:start}
+  .story-photos{grid-template-columns:minmax(0,1fr);gap:2rem}
+  .story-photos figure:nth-child(2){margin-left:clamp(2rem,20%,8rem)}
+  .trail{margin-top:clamp(3.5rem,6vw,5.5rem);padding-left:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3.5rem 2rem}
+  .trail::before{display:none}
+  .trail li{padding-bottom:0;padding-top:2.75rem;border-top:3px dashed var(--sand)}
+  .trail li::before{left:0;top:-16px}
+  .trail li::after{left:8px;top:-8px}
+  .years-head{grid-template-columns:auto 1fr;gap:3rem}
+  .years-strip{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .hist-panel{grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem}
+  .wet-wall{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .wet-wall figure:nth-child(even){margin-top:2.5rem}
+  .games-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+  /* Colour Day: the portrait fills the left column across both rows, the
+     powder-throw runs wide beside it, and the two squares close the block. */
+  .colour-set{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+  .colour-set .colour-tall{grid-row:span 2;display:flex;flex-direction:column}
+  .colour-set .colour-tall .media{aspect-ratio:auto;flex:1 1 auto;min-height:0}
+  .colour-set .colour-wide{grid-column:span 2}
+  .colour-finale .media{aspect-ratio:21/9}
+  /* Club nights: equal height, unequal widths — a strip of one evening
+     rather than three matching tiles. */
+  .club-strip{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,1.1fr);gap:1.5rem}
+  .club-strip figure:first-child{grid-column:auto}
+  .club-strip .media{aspect-ratio:auto;height:clamp(260px,25vw,400px)}
+  .colour-copy{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:3rem;align-items:start}
+  .club-copy{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:3rem;align-items:start}
+  .gives{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+  /* only two cards here, so they get half the row each rather than
+     sitting in thirds with an empty column beside them */
+  .gives--two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .games-faces{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:1.5rem}
+  .games-copy{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:3rem;align-items:start}
+  .wet-copy{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem}
+  .posts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ways{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .voice{grid-template-columns:340px minmax(0,1fr);gap:3rem}
+  .contact-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:3.5rem}
+  .foot-grid{grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr))}
+  .footer{padding-bottom:clamp(3rem,6vw,5rem)}
+  .camp-hero .wrap{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+  .camp-feats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .feat{flex-direction:column;gap:1.1rem;padding:1.75rem}
+}
+/* The Armenian navigation is the widest of the three languages; the full
+   bar only appears once all seven labels genuinely fit. Below that the
+   menu button carries them — with bigger tap targets, which is no loss. */
+/* Armenian labels are the longest of the three languages, so the full bar
+   only appears once all seven genuinely fit. Below this the menu button
+   carries them — with larger tap targets, which is no loss. */
+@media (min-width:1440px){
+  .nav{display:flex}
+  .burger{display:none}
+  .header-in{gap:.75rem;padding-inline:0}
+  .header .wrap.header-in{padding-inline:1.5rem}
+  .header .btn--donate{padding:.9rem 1.3rem}
+}
+@media (min-width:1280px){
+  /* The gallery has no breakpoint: its grid is auto-fill, so it steps
+     1 -> 4 columns by itself. See css/sections/gallery.css. */
+  .story-grid{gap:4.5rem}
+}
+/* phones: the header carries the mark, the language switch and the menu.
+   The full name lives one tap away inside the menu. */
+@media (max-width:560px){
+  /* With the language switcher gone the phone header has room for the
+     name again — it was only ever hidden to fit ՀԱՅ | RU | EN. */
+  .header-in{gap:.5rem;min-height:72px}
+  .hero .lead{font-size:var(--fs-base)}
+  .burger{width:52px;height:52px}
+}
+@media (max-width:359px){
+  :root{--fs-base:1.0625rem;--fs-lg:1.1875rem}
+  .burger{width:48px;height:48px;padding:0 12px}
+}

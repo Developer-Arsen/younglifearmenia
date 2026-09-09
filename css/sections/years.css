@@ -1,0 +1,38 @@
+/* 25 Years: dark section, oversized numeral, archive strip. */
+.years{background:var(--brand-900);position:relative;overflow:hidden}
+.years::before{
+  content:"";position:absolute;inset:0;opacity:.16;
+  background:radial-gradient(circle at 78% 12%,var(--green),transparent 55%);
+}
+.years-in{position:relative}
+.years-head{display:grid;gap:2rem;align-items:end}
+.big25{
+  font-size:clamp(9rem,26vw,20rem);line-height:.78;font-weight:800;
+  letter-spacing:-.06em;margin:0;
+  color:rgba(164,189,82,.14);
+  -webkit-text-stroke:2px var(--green);
+  position:relative;
+}
+.big25 span{color:var(--green);-webkit-text-stroke:0}
+.years-strip{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;
+  margin-top:clamp(2.5rem,5vw,4rem);
+}
+.years-strip .media{aspect-ratio:3/4;border-radius:var(--r-sm)}
+.years-strip .media:nth-child(even){margin-top:1.75rem}
+.years-strip .media img{filter:grayscale(1) sepia(.25) contrast(1.05)}
+.years-strip .media:hover img{filter:none}
+.years-film{
+  margin-top:clamp(2.5rem,5vw,4rem);border-radius:var(--r-lg);
+  overflow:hidden;box-shadow:0 20px 50px rgba(3,38,56,.35);
+  background:#000;
+}
+/* The film sits in the same frame whether it is showing its poster,
+   a local <video> or Drive's player. */
+#years-film{position:relative;display:block}
+#years-film .media{aspect-ratio:16/9;border-radius:0}
+#years-film .vplayer,#years-film .vframe{aspect-ratio:16/9}
+.years-film-cap{
+  margin:1rem 0 0;font-family:var(--font-label);font-size:var(--fs-xs);
+  letter-spacing:.06em;color:rgba(251,247,239,.62);
+}

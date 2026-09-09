@@ -1,0 +1,44 @@
+/* Photo wrapper and the painted scene shown while (or instead of) a photo loads.
+   Every photo sits on a painted "scene" background. If a photo is slow, missing or swapped out, the scene shows instead of a broken box. */
+.media{
+  display:block;
+  position:relative;overflow:hidden;background:var(--brand-700);
+  border-radius:var(--r-md);
+}
+.media img{
+  width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .6s ease,transform .7s ease;
+}
+.media img.loaded{opacity:1}
+.media img.failed{opacity:0}
+.media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,rgba(3,38,56,.12));
+}
+.media--zoom img{transition:opacity .6s ease,transform .9s cubic-bezier(.2,.7,.3,1)}
+.media--zoom:hover img.loaded{transform:scale(1.05)}
+
+.scene{position:absolute;inset:0;z-index:-0}
+.media > .scene{z-index:0}
+.media img{position:relative;z-index:1}
+
+.scene--ridge{background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'%3E%3Cpath fill='%23032638' fill-opacity='.65' d='M0 600V430l170-130 130 100 190-200 200 240 150-110 360 250v20z'/%3E%3Cpath fill='%23032638' fill-opacity='.4' d='M0 600V500l220-120 180 90 200-130 260 160 340-110v210z'/%3E%3C/svg%3E") bottom/100% auto no-repeat,
+  linear-gradient(180deg,#4A7E97,#A8C6D6 55%,#0A4763)}
+.scene--forest{background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'%3E%3Cg fill='%23032638' fill-opacity='.5'%3E%3Cpath d='M100 600l60-260 60 260zM260 600l80-330 80 330zM460 600l55-240 55 240zM640 600l90-350 90 350zM860 600l65-270 65 270zM1040 600l70-300 70 300z'/%3E%3C/g%3E%3C/svg%3E") bottom/100% auto no-repeat,
+  linear-gradient(180deg,#8FB3C7,#13607F 60%,#032638)}
+.scene--fire{background:
+  radial-gradient(circle at 50% 78%,rgba(164,189,82,.9),rgba(164,189,82,.5) 30%,transparent 62%),
+  linear-gradient(180deg,#032638,#0A4763)}
+.scene--sun{background:
+  radial-gradient(circle at 70% 24%,rgba(164,189,82,.95),rgba(224,163,58,.25) 34%,transparent 60%),
+  linear-gradient(180deg,#E3D8C4,#A4BD52 45%,#4F6B1E)}
+.scene--archive{background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'%3E%3Cpath fill='%23000' fill-opacity='.28' d='M0 600V450l200-90 180 70 220-120 260 130 340-70v230z'/%3E%3C/svg%3E") bottom/100% auto no-repeat,
+  linear-gradient(180deg,#C9BCA6,#8F8676)}
+.scene--people{background:
+  radial-gradient(circle at 30% 70%,rgba(164,189,82,.35),transparent 55%),
+  linear-gradient(160deg,#13607F,#8FB3C7 70%,#E3D8C4)}
+.scene--water{background:linear-gradient(180deg,#A8C6D6,#4A7E97 60%,#03222F)}
+.scene--stone{background:linear-gradient(160deg,#E3D8C4,#C9BCA6 55%,#8F8676)}

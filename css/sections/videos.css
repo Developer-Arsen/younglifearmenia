@@ -1,0 +1,57 @@
+/* Videos: cinematic dark section, featured film + cards. */
+.videos{background:var(--brand-900);position:relative}
+.video-main{margin-top:2.5rem;position:relative;border-radius:var(--r-lg);overflow:hidden}
+.video-main .media{aspect-ratio:16/9;border-radius:var(--r-lg)}
+.play{
+  position:absolute;inset:0;z-index:4;width:100%;border:0;background:transparent;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
+  cursor:pointer;color:#fff;
+}
+.play .ring{
+  width:84px;height:84px;border-radius:50%;background:rgba(251,247,239,.92);
+  display:grid;place-items:center;box-shadow:0 10px 30px rgba(3,38,56,.4);
+  transition:transform .2s ease,background-color .2s ease;
+}
+.play:hover .ring{transform:scale(1.08);background:#fff}
+.play .ring svg{margin-left:5px}
+.video-meta{padding:1.5rem 0 0}
+.video-meta h3{margin-bottom:.4rem}
+/* auto-fit, so the row fills itself whether there are two films or five.
+   No breakpoint needed. */
+.video-grid{
+  display:grid;gap:1.5rem;margin-top:2.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));
+}
+.vcard{background:rgba(251,247,239,.05);border:1px solid var(--line-dark);border-radius:var(--r-md);overflow:hidden}
+.vcard .thumb{position:relative}
+.vcard .media{aspect-ratio:16/9;border-radius:0}
+.vcard .play .ring{width:62px;height:62px}
+.vcard-body{padding:1.25rem}
+.vcard h4{font-size:var(--fs-lg);margin:0 0 .35rem;font-weight:800}
+.vcard p{margin:0;color:rgba(251,247,239,.7);font-size:var(--fs-sm)}
+.vdur{font-family:var(--font-label);font-size:.8rem;color:var(--green);letter-spacing:.1em}
+
+/* ---- Playback -------------------------------------------------------
+   The poster is swapped for a real <video> on the first press, so the
+   film costs a visitor nothing until they ask for it. The player keeps
+   the frame it replaced, so the layout does not jump. */
+.video-main,.vcard .thumb{position:relative;background:#000}
+.vplayer{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000}
+/* Drive's own player. It brings its own controls and its own black
+   letterboxing, so it only needs the frame and no border. */
+.vframe{display:block;width:100%;aspect-ratio:16/9;border:0;background:#000}
+.video-main .vplayer,.video-main .vframe{border-radius:var(--r-lg)}
+.video-main.is-playing .media,.vcard .thumb.is-playing .media{display:none}
+
+/* Shown only when a film's file is not in videos/ yet — the team sees
+   which name to use, a visitor never sees this at all. */
+.vmissing{
+  position:absolute;left:0;right:0;bottom:0;z-index:5;margin:0;
+  padding:.85rem 1rem;text-align:center;
+  font-size:var(--fs-xs);line-height:1.5;color:#fff;
+  background:rgba(3,38,56,.88);
+}
+.vmissing code{
+  font-family:var(--font-label);font-size:.95em;
+  background:rgba(164,189,82,.18);padding:.1em .35em;border-radius:4px;
+}

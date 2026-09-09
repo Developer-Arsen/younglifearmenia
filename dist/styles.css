@@ -1,0 +1,1237 @@
+
+/* ---- css/base/tokens.css ---- */
+/* Design tokens: palette, type scale, spacing, radii, shadows.
+   Change a value here and it changes everywhere.
+
+   Palette: sampled from Pioneer Camp — navy #05334C and green #A4BD52,
+   warmed with cream and sand so it reads Armenian rather than corporate.
+   Navy carries, green points, cream breathes.
+
+   The brand green is too light to be text on cream (1.97:1), so it has a
+   darkened sibling: use --green on dark surfaces and for Donate, and
+   --accent for green-family text on light ones (5.69:1). */
+:root{
+  --brand-900:#032638;
+  --brand-800:#05334C;
+  --brand-700:#0A4763;
+  --brand-600:#13607F;
+  --brand-mist:#8FB3C7;
+
+  --cream:#FBF7EF;
+  --cream-2:#F1EADD;
+  --sand:#E3D8C4;
+
+  --accent:#4F6B1E;        /* brand green, darkened for text on cream */
+  --accent-strong:#3D5417;
+  --green:#A4BD52;         /* the brand green — dark surfaces + Donate */
+  --green-strong:#93AB45;  /* Donate hover */
+
+  --ink:#10202B;
+  --muted:#55636D;
+  --line:rgba(16,32,43,.14);
+  --line-dark:rgba(251,247,239,.18);
+
+  --font-body:'Manrope','Noto Sans Armenian','Helvetica Neue',Arial,sans-serif;
+  --font-label:'IBM Plex Mono','Noto Sans Armenian',ui-monospace,monospace;
+
+  /* Type scale — floors are deliberately high: this site is read by
+     grandparents on old phones as often as by teenagers. */
+  --fs-xs:.9375rem;   /* 15px  — smallest text anywhere on the page */
+  --fs-sm:1.0625rem;  /* 17px */
+  --fs-base:1.1875rem;/* 19px  — body */
+  --fs-lg:1.375rem;
+  --fs-xl:clamp(1.5rem,1.2rem + 1.4vw,2rem);
+  --fs-h3:clamp(1.5rem,1.15rem + 1.7vw,2.125rem);
+  --fs-h2:clamp(2rem,1.4rem + 3vw,3.5rem);
+  --fs-h1:clamp(2.5rem,1.7rem + 4.2vw,5rem);
+
+  --sp-section:clamp(4rem,3rem + 6vw,8.5rem);
+  --wrap:1240px;
+  --wrap-narrow:760px;
+
+  --r-sm:6px;
+  --r-md:14px;
+  --r-lg:24px;
+  --r-pill:999px;
+
+  --shadow-sm:0 2px 10px rgba(3,38,56,.07);
+  --shadow-md:0 14px 34px rgba(3,38,56,.13);
+  --shadow-lg:0 26px 70px rgba(3,38,56,.22);
+
+  --tap:56px; /* minimum interactive height, everywhere */
+}
+
+/* ---- css/base/reset.css ---- */
+/* Element defaults, page shell (.wrap/.section), focus ring, skip link. */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:var(--fs-base);
+  line-height:1.7;
+  font-weight:500;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+figure{margin:0}
+h1,h2,h3,h4{margin:0;line-height:1.12;font-weight:800;letter-spacing:-.02em;overflow-wrap:break-word}
+h1{font-size:var(--fs-h1)}
+h2{font-size:var(--fs-h2)}
+h3{font-size:var(--fs-h3);line-height:1.2}
+p{margin:0 0 1.1em}
+a{color:inherit}
+:lang(hy) h1,:lang(hy) h2,:lang(hy) h3{letter-spacing:-.005em;line-height:1.2}
+:lang(ru) h1,:lang(ru) h2{letter-spacing:-.015em}
+button{font:inherit;color:inherit}
+ul,ol{margin:0;padding:0;list-style:none}
+
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(1.25rem,5vw,3rem)}
+.narrow{max-width:var(--wrap-narrow)}
+.section{padding-block:var(--sp-section)}
+
+/* The header is fixed, so an anchor jump would otherwise land with the
+   top of the section hidden behind it. */
+section[id],[id]{scroll-margin-top:96px}
+@media (max-width:900px){section[id],[id]{scroll-margin-top:80px}}
+
+:focus-visible{
+  outline:3px solid var(--accent);
+  outline-offset:3px;
+  border-radius:4px;
+}
+.on-dark :focus-visible,.dark :focus-visible{outline-color:var(--green)}
+
+.skip{
+  position:absolute;left:1rem;top:-100px;z-index:200;
+  background:var(--brand-800);color:var(--cream);padding:1rem 1.5rem;
+  border-radius:0 0 var(--r-md) var(--r-md);font-weight:700;text-decoration:none;
+  transition:top .18s ease;
+}
+.skip:focus{top:0}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---- css/base/typography.css ---- */
+/* Type helpers: eyebrow, lead, on-dark inversion, placeholder marker. */
+.eyebrow{
+  font-family:var(--font-label);
+  font-size:var(--fs-xs);
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 1rem;
+  display:flex;align-items:center;gap:.7rem;
+}
+.eyebrow::before{
+  content:"";width:26px;height:2px;background:var(--accent);flex:none;
+}
+.on-dark .eyebrow,.hero .eyebrow,.camp-hero .eyebrow,.cta .eyebrow{color:var(--green)}
+.on-dark .eyebrow::before,.hero .eyebrow::before,.camp-hero .eyebrow::before,.cta .eyebrow::before{background:var(--green)}
+.lead{font-size:var(--fs-lg);line-height:1.62;color:var(--muted);max-width:60ch}
+.on-dark{color:var(--cream)}
+.on-dark .lead{color:rgba(251,247,239,.82)}
+.head-block{max-width:44ch}
+.head-block h2 + .lead{margin-top:1.25rem}
+
+/* placeholder markers — everything the Young Life team still needs to supply */
+.ph{
+  border-bottom:2px dotted var(--green);
+  background:rgba(164,189,82,.12);
+  padding:0 .2em;border-radius:3px;
+}
+.on-dark .ph,.footer .ph{background:rgba(164,189,82,.1);border-bottom-color:rgba(164,189,82,.55)}
+b.ph{display:inline-block}
+
+/* ---- css/components/buttons.css ---- */
+/* Buttons and arrow links. Nothing interactive is shorter than --tap.
+   Big, square-shouldered pills. Nothing below 56px tall. */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  min-height:var(--tap);padding:.9rem 1.9rem;
+  border-radius:var(--r-pill);border:2px solid transparent;
+  font-weight:800;font-size:var(--fs-sm);letter-spacing:.01em;
+  text-decoration:none;cursor:pointer;text-align:center;
+  transition:transform .16s ease,background-color .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+/* Donate is the brand green with navy type (7.46:1). Pioneer Camp uses
+   white-on-green for the same action, but white on this green is 1.97:1,
+   so the navy keeps the brand pairing and stays readable. */
+.btn--donate{background:var(--green);color:var(--brand-900);box-shadow:0 6px 18px rgba(3,38,56,.22)}
+.btn--donate:hover{background:var(--green-strong);box-shadow:0 10px 26px rgba(3,38,56,.3)}
+.btn--solid{background:var(--brand-800);color:var(--cream)}
+.btn--solid:hover{background:var(--brand-700)}
+.btn--outline{border-color:currentColor;color:var(--brand-800)}
+.btn--outline:hover{background:var(--brand-800);color:var(--cream);border-color:var(--brand-800)}
+.on-dark .btn--outline,.hero .btn--outline,.cta .btn--outline{color:var(--cream)}
+.on-dark .btn--outline:hover,.hero .btn--outline:hover,.cta .btn--outline:hover{background:var(--cream);color:var(--brand-900);border-color:var(--cream)}
+.btn--light{background:var(--cream);color:var(--brand-900)}
+.btn--light:hover{background:#fff}
+.btn--lg{min-height:64px;padding:1.05rem 2.4rem;font-size:var(--fs-base)}
+.btn--block{width:100%}
+.btn .heart{font-size:1.1em;line-height:1}
+
+/* text link with arrow */
+.link{
+  display:inline-flex;align-items:center;gap:.55rem;min-height:44px;
+  font-weight:800;text-decoration:none;color:var(--brand-700);
+  border-bottom:2px solid var(--sand);
+}
+.link:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.on-dark .link{color:var(--green);border-bottom-color:rgba(164,189,82,.4)}
+.link .arw{transition:transform .18s ease}
+.link:hover .arw{transform:translateX(4px)}
+
+/* ---- css/components/ornament.css ---- */
+/* The khachkar-derived interlace rule used between sections.
+   The trail is a dashed path with stations — it threads Our Story, the 25 years and the camp history, because those three sections are one continuous walk. The ornament is a khachkar-derived interlace used only as a section rule. */
+.rule{
+  height:18px;width:100%;
+  background-repeat:repeat-x;background-position:center;
+  background-size:auto 18px;
+  opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='18' viewBox='0 0 72 18'%3E%3Cg fill='none' stroke='%2305334C' stroke-width='1.6'%3E%3Cpath d='M0 9c9 0 9-8 18-8s9 8 18 8 9-8 18-8 9 8 18 8'/%3E%3Cpath d='M0 9c9 0 9 8 18 8s9-8 18-8 9 8 18 8 9-8 18-8'/%3E%3C/g%3E%3C/svg%3E");
+}
+.on-dark .rule,.footer .rule{
+  opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='18' viewBox='0 0 72 18'%3E%3Cg fill='none' stroke='%23A4BD52' stroke-width='1.6'%3E%3Cpath d='M0 9c9 0 9-8 18-8s9 8 18 8 9-8 18-8 9 8 18 8'/%3E%3Cpath d='M0 9c9 0 9 8 18 8s9-8 18-8 9 8 18 8 9-8 18-8'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ---- css/components/media.css ---- */
+/* Photo wrapper and the painted scene shown while (or instead of) a photo loads.
+   Every photo sits on a painted "scene" background. If a photo is slow, missing or swapped out, the scene shows instead of a broken box. */
+.media{
+  display:block;
+  position:relative;overflow:hidden;background:var(--brand-700);
+  border-radius:var(--r-md);
+}
+.media img{
+  width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .6s ease,transform .7s ease;
+}
+.media img.loaded{opacity:1}
+.media img.failed{opacity:0}
+.media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,rgba(3,38,56,.12));
+}
+.media--zoom img{transition:opacity .6s ease,transform .9s cubic-bezier(.2,.7,.3,1)}
+.media--zoom:hover img.loaded{transform:scale(1.05)}
+
+.scene{position:absolute;inset:0;z-index:-0}
+.media > .scene{z-index:0}
+.media img{position:relative;z-index:1}
+
+.scene--ridge{background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'%3E%3Cpath fill='%23032638' fill-opacity='.65' d='M0 600V430l170-130 130 100 190-200 200 240 150-110 360 250v20z'/%3E%3Cpath fill='%23032638' fill-opacity='.4' d='M0 600V500l220-120 180 90 200-130 260 160 340-110v210z'/%3E%3C/svg%3E") bottom/100% auto no-repeat,
+  linear-gradient(180deg,#4A7E97,#A8C6D6 55%,#0A4763)}
+.scene--forest{background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'%3E%3Cg fill='%23032638' fill-opacity='.5'%3E%3Cpath d='M100 600l60-260 60 260zM260 600l80-330 80 330zM460 600l55-240 55 240zM640 600l90-350 90 350zM860 600l65-270 65 270zM1040 600l70-300 70 300z'/%3E%3C/g%3E%3C/svg%3E") bottom/100% auto no-repeat,
+  linear-gradient(180deg,#8FB3C7,#13607F 60%,#032638)}
+.scene--fire{background:
+  radial-gradient(circle at 50% 78%,rgba(164,189,82,.9),rgba(164,189,82,.5) 30%,transparent 62%),
+  linear-gradient(180deg,#032638,#0A4763)}
+.scene--sun{background:
+  radial-gradient(circle at 70% 24%,rgba(164,189,82,.95),rgba(224,163,58,.25) 34%,transparent 60%),
+  linear-gradient(180deg,#E3D8C4,#A4BD52 45%,#4F6B1E)}
+.scene--archive{background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'%3E%3Cpath fill='%23000' fill-opacity='.28' d='M0 600V450l200-90 180 70 220-120 260 130 340-70v230z'/%3E%3C/svg%3E") bottom/100% auto no-repeat,
+  linear-gradient(180deg,#C9BCA6,#8F8676)}
+.scene--people{background:
+  radial-gradient(circle at 30% 70%,rgba(164,189,82,.35),transparent 55%),
+  linear-gradient(160deg,#13607F,#8FB3C7 70%,#E3D8C4)}
+.scene--water{background:linear-gradient(180deg,#A8C6D6,#4A7E97 60%,#03222F)}
+.scene--stone{background:linear-gradient(160deg,#E3D8C4,#C9BCA6 55%,#8F8676)}
+
+/* ---- css/components/header.css ---- */
+/* Fixed header: brand, desktop nav, language switcher, burger. */
+.header{
+  position:fixed;inset:0 0 auto 0;z-index:90;
+  transition:background-color .3s ease,box-shadow .3s ease,border-color .3s ease;
+  border-bottom:1px solid transparent;
+}
+.header::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(3,38,56,.55),transparent);
+  transition:opacity .3s ease;
+}
+.header.solid{background:var(--cream);border-bottom-color:var(--line);box-shadow:var(--shadow-sm)}
+.header.solid::before{opacity:0}
+.header-in{
+  display:flex;align-items:center;gap:1.25rem;
+  min-height:82px;padding-block:.5rem;
+  max-width:1560px;
+}
+.brand{
+  display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--cream);
+  margin-right:auto;min-height:var(--tap);
+}
+.header.solid .brand{color:var(--brand-800)}
+.brand-mark{
+  width:44px;height:44px;flex:none;border-radius:12px;
+  background:var(--green);color:var(--brand-900);
+  display:grid;place-items:center;font-weight:800;font-size:1.05rem;letter-spacing:-.03em;
+  box-shadow:0 4px 12px rgba(3,38,56,.28);
+}
+.brand-name{display:flex;flex-direction:column;line-height:1.05}
+.brand-name b{font-size:1.2rem;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.brand-name span{
+  font-family:var(--font-label);font-size:.75rem;letter-spacing:.18em;
+  text-transform:uppercase;opacity:.8;font-weight:500;
+}
+
+.nav{display:none;gap:.15rem}
+.nav a{
+  display:flex;align-items:center;min-height:48px;padding:.4rem .45rem;
+  text-decoration:none;font-weight:700;font-size:.9375rem;color:var(--cream);
+  border-radius:var(--r-sm);white-space:nowrap;
+}
+.header.solid .nav a{color:var(--ink)}
+.nav a:hover{background:rgba(251,247,239,.16)}
+.header.solid .nav a:hover{background:var(--cream-2);color:var(--brand-700)}
+
+.header .btn--donate{display:none}
+
+.burger{
+  display:inline-flex;flex-direction:column;justify-content:center;gap:6px;
+  width:var(--tap);height:var(--tap);flex:none;
+  border:1px solid rgba(251,247,239,.3);background:rgba(251,247,239,.16);
+  border-radius:var(--r-md);cursor:pointer;padding:0 14px;
+}
+.header.solid .burger{background:var(--cream-2);border-color:var(--line)}
+.burger i{display:block;height:2.5px;background:var(--cream);border-radius:2px;transition:transform .2s ease}
+.header.solid .burger i{background:var(--brand-800)}
+
+/* ---- css/components/nav-submenu.css ---- */
+/* Navigation submenu.
+   Pioneer Camp now has three pages under it. On desktop that is a
+   dropdown; on mobile it is an indented list inside the menu, always
+   open — a disclosure inside a disclosure is one tap too many. */
+
+/* ---------- desktop ---------- */
+.has-sub{position:relative}
+.nav .sub-toggle{
+  display:flex;align-items:center;gap:.35rem;min-height:48px;
+  padding:.4rem .45rem;border:0;background:transparent;border-radius:var(--r-sm);
+  font-weight:700;font-size:.9375rem;color:var(--cream);cursor:pointer;white-space:nowrap;
+}
+.header.solid .nav .sub-toggle{color:var(--ink)}
+.nav .sub-toggle:hover{background:rgba(251,247,239,.16)}
+.header.solid .nav .sub-toggle:hover{background:var(--cream-2);color:var(--brand-700)}
+.nav .sub-toggle .chev{transition:transform .18s ease}
+.nav .sub-toggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+
+.submenu{
+  position:absolute;top:calc(100% + 6px);left:0;z-index:20;
+  min-width:270px;padding:.5rem;margin:0;
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:var(--r-md);box-shadow:var(--shadow-md);
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .18s ease,transform .18s ease,visibility .18s;
+}
+.has-sub[data-open="true"] .submenu{opacity:1;visibility:visible;transform:none}
+.submenu a{
+  display:block;min-height:52px;padding:.85rem 1rem;
+  color:var(--ink);font-size:1rem;font-weight:700;border-radius:var(--r-sm);
+  text-decoration:none;white-space:normal;
+}
+.submenu a:hover,.submenu a:focus-visible{background:var(--cream-2);color:var(--brand-700)}
+.submenu a small{
+  display:block;font-family:var(--font-label);font-size:.8rem;font-weight:500;
+  color:var(--muted);margin-top:.15rem;letter-spacing:.02em;
+}
+
+/* ---------- mobile ---------- */
+.menu .subnav{padding:0 0 .5rem 1.25rem;border-left:2px solid var(--line-dark);margin:0 0 .5rem}
+.menu .subnav a{
+  /* the parent rule centres nav labels with space-between; sub-links read
+     as a list, so they start at the left edge instead */
+  justify-content:flex-start;
+  min-height:56px;font-size:1.125rem;font-weight:600;
+  border-bottom:0;color:rgba(251,247,239,.82);
+}
+.menu .subnav a::before{content:"↳";margin-right:.6rem;opacity:.5}
+
+/* ---- css/components/mobile-menu.css ---- */
+/* Full-screen mobile menu. */
+.menu{
+  position:fixed;inset:0;z-index:120;background:var(--brand-800);
+  color:var(--cream);display:flex;flex-direction:column;
+  transform:translateY(-100%);visibility:hidden;
+  transition:transform .32s cubic-bezier(.4,0,.2,1),visibility .32s;
+  overflow-y:auto;
+}
+.menu.open{transform:translateY(0);visibility:visible}
+.menu-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:82px}
+.menu-close{
+  width:var(--tap);height:var(--tap);border-radius:var(--r-md);
+  border:1px solid var(--line-dark);background:rgba(251,247,239,.1);
+  color:var(--cream);font-size:1.6rem;line-height:1;cursor:pointer;
+}
+.menu nav{padding-block:1rem 2rem}
+.menu nav a{
+  display:flex;align-items:center;justify-content:space-between;
+  min-height:68px;padding:.5rem 0;
+  font-size:1.5rem;font-weight:800;text-decoration:none;
+  border-bottom:1px solid var(--line-dark);
+}
+.menu nav a .num{font-family:var(--font-label);font-size:.9rem;opacity:.55;font-weight:500}
+.menu-foot{margin-top:auto;padding-bottom:2.5rem;display:grid;gap:1rem}
+
+/* ---- css/components/scripture.css ---- */
+/* Scripture band.
+   The verse the ministry is built on, given its own quiet full-width
+   moment between the story and the camp — set large, centred, and
+   never competing with a photograph. */
+
+.scripture{
+  background:var(--brand-800);color:var(--cream);
+  text-align:center;position:relative;overflow:hidden;
+}
+.scripture::before{
+  content:"";position:absolute;inset:0;opacity:.14;pointer-events:none;
+  background:radial-gradient(circle at 50% 0%,var(--green),transparent 62%);
+}
+.scripture-in{position:relative;max-width:56ch;margin-inline:auto}
+.scripture blockquote{
+  margin:0;font-size:clamp(1.5rem,1rem + 2.6vw,2.75rem);
+  line-height:1.34;font-weight:700;letter-spacing:-.01em;
+}
+.scripture blockquote em{
+  font-style:normal;color:var(--green);
+}
+.scripture cite{
+  display:block;margin-top:1.75rem;font-style:normal;
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(251,247,239,.7);
+}
+.scripture .mission{
+  margin:2.5rem auto 0;padding-top:2rem;
+  border-top:1px solid var(--line-dark);
+  font-size:var(--fs-lg);color:rgba(251,247,239,.85);max-width:48ch;
+}
+
+/* Ways to give — the real asks, with real amounts. */
+.gives{display:grid;gap:1rem;margin-top:2.5rem;grid-template-columns:minmax(0,1fr)}
+.give{
+  display:flex;gap:1.1rem;align-items:flex-start;
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:var(--r-md);padding:1.5rem;
+}
+.give{flex-wrap:wrap}
+.give > div{min-width:0;flex:1 1 200px}   /* the text column must be allowed to shrink */
+.give .amount{
+  flex:none;min-width:92px;font-weight:800;font-size:1.5rem;
+  color:var(--accent);line-height:1.1;letter-spacing:-.02em;
+}
+.give .amount small{
+  display:block;font-family:var(--font-label);font-size:.75rem;
+  font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-top:.25rem;
+}
+.give h3{font-size:var(--fs-lg);margin-bottom:.35rem}
+.give p{margin:0;color:var(--muted);font-size:var(--fs-sm)}
+
+/* Prayer requests, as the handout lists them. */
+.prayers{display:grid;gap:1rem;margin-top:1.5rem;grid-template-columns:minmax(0,1fr)}
+.prayer{
+  padding:1.25rem 1.5rem;border-left:3px solid var(--green);
+  background:rgba(164,189,82,.1);border-radius:0 var(--r-md) var(--r-md) 0;
+  color:var(--muted);font-size:var(--fs-sm);
+}
+
+/* Ways that cost time rather than money: same card, but the "amount"
+   slot carries a duration instead of a figure. */
+.give--time .amount{
+  font-size:1.25rem;color:var(--brand-700);
+}
+
+/* ---- css/components/lightbox.css ---- */
+/* Gallery lightbox dialog. */
+.lightbox{
+  position:fixed;inset:0;z-index:150;background:rgba(3,38,56,.96);
+  display:none;flex-direction:column;padding:1rem;
+}
+.lightbox.open{display:flex}
+.lb-top{display:flex;justify-content:flex-end;gap:.5rem}
+.lb-btn{
+  width:var(--tap);height:var(--tap);border-radius:50%;
+  background:rgba(251,247,239,.14);border:1px solid var(--line-dark);
+  color:var(--cream);font-size:1.5rem;line-height:1;cursor:pointer;
+  display:grid;place-items:center;
+}
+.lb-btn:hover{background:rgba(251,247,239,.26)}
+.lb-body{flex:1;display:flex;align-items:center;justify-content:center;gap:.75rem;min-height:0}
+.lb-figure{flex:1;height:100%;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.lb-figure .media{max-height:74vh;aspect-ratio:auto;height:74vh;background:var(--brand-900)}
+.lb-figure .media img{object-fit:contain}
+.lb-figure figcaption{color:rgba(251,247,239,.85);text-align:center;padding:1rem 0 0;font-size:var(--fs-sm)}
+.lb-count{font-family:var(--font-label);font-size:var(--fs-xs);color:rgba(251,247,239,.6);text-align:center;padding-bottom:1rem}
+
+/* ---- css/components/forms.css ---- */
+/* Contact form fields, submit state, success message. */
+form{background:var(--cream);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(1.5rem,4vw,2.5rem)}
+.field{margin-bottom:1.5rem}
+.field label{display:block;font-weight:800;margin-bottom:.5rem}
+.field input,.field textarea{
+  width:100%;min-height:var(--tap);padding:1rem 1.1rem;font:inherit;
+  border:2px solid var(--line);border-radius:var(--r-md);background:var(--cream-2);color:var(--ink);
+}
+.field textarea{min-height:150px;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--brand-600);background:#fff;outline:none}
+.field input:focus-visible,.field textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.form-note{font-size:var(--fs-xs);color:var(--muted);margin:1rem 0 0}
+.form-ok{
+  margin-top:1.25rem;padding:1rem 1.25rem;border-radius:var(--r-md);
+  background:rgba(20,104,143,.12);border:2px solid var(--brand-600);font-weight:700;
+}
+.form-ok[hidden]{display:none}
+
+/* ---- css/sections/hero.css ---- */
+/* Hero: full-height photo, headline, two calls to action. */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;isolation:isolate}
+.hero .media{position:absolute;inset:0;border-radius:0;z-index:-2}
+.hero .media::after{display:none}
+.hero-shade{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(90deg,rgba(3,38,56,.6),rgba(3,38,56,.1) 62%),
+    linear-gradient(180deg,rgba(3,38,56,.5) 0%,rgba(3,38,56,.15) 34%,rgba(3,38,56,.72) 78%,rgba(3,38,56,.9) 100%);
+}
+.hero-in{padding-block:clamp(3rem,10vh,7rem) clamp(3.5rem,9vh,6rem);color:var(--cream)}
+.hero h1{max-width:15ch;text-shadow:0 2px 26px rgba(3,38,56,.35)}
+.hero .lead{color:rgba(251,247,239,.9);max-width:48ch;margin-top:1.5rem;font-weight:500}
+.hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.25rem}
+.hero-actions .btn{flex:1 1 260px}
+.hero-scroll{
+  display:none;position:absolute;left:50%;bottom:1.5rem;transform:translateX(-50%);
+  font-family:var(--font-label);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(251,247,239,.75);
+}
+.hero-scroll::after{content:"";display:block;width:1px;height:34px;background:currentColor;margin:.6rem auto 0;opacity:.6}
+
+/* ---- css/sections/story.css ---- */
+/* Our Story: split editorial layout + the trail timeline. */
+.story{background:var(--cream)}
+.story-grid{display:grid;gap:clamp(2rem,4vw,3.5rem);align-items:center}
+.story-photos{position:relative;display:grid;gap:1rem}
+.story-photos .media--then{aspect-ratio:4/3}
+.story-photos .media--now{aspect-ratio:4/3}
+.photo-cap{
+  font-family:var(--font-label);font-size:var(--fs-xs);color:var(--muted);
+  margin:.55rem 0 0;letter-spacing:.02em;
+}
+
+/* the trail */
+/* The milestone timeline these style is not in the page right now: every
+   date read "to be confirmed", so the markup was removed from index.html.
+   Kept here so it can be restored once the real years are known. */
+.trail{margin-top:clamp(3rem,6vw,5rem);position:relative;padding-left:44px}
+.trail::before{
+  content:"";position:absolute;left:13px;top:8px;bottom:8px;width:0;
+  border-left:3px dashed var(--sand);
+}
+.trail li{position:relative;padding-bottom:2.25rem}
+.trail li:last-child{padding-bottom:0}
+.trail li::before{
+  content:"";position:absolute;left:-44px;top:2px;width:30px;height:30px;
+  border-radius:50%;background:var(--cream);border:3px solid var(--brand-600);
+}
+.trail li::after{
+  content:"";position:absolute;left:-36px;top:10px;width:14px;height:14px;
+  border-radius:50%;background:var(--brand-600);transform:scale(0);
+  transition:transform .4s cubic-bezier(.2,1.4,.4,1);
+}
+.trail li.in::after{transform:scale(1)}
+.trail li:last-child::before{border-color:var(--accent)}
+.trail li:last-child::after{background:var(--accent)}
+.trail .yr{font-family:var(--font-label);font-size:var(--fs-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block}
+.trail h3{font-size:var(--fs-xl);margin:.3rem 0 .4rem}
+.trail p{color:var(--muted);margin:0;max-width:52ch;font-size:var(--fs-sm)}
+
+/* ---- css/sections/years.css ---- */
+/* 25 Years: dark section, oversized numeral, archive strip. */
+.years{background:var(--brand-900);position:relative;overflow:hidden}
+.years::before{
+  content:"";position:absolute;inset:0;opacity:.16;
+  background:radial-gradient(circle at 78% 12%,var(--green),transparent 55%);
+}
+.years-in{position:relative}
+.years-head{display:grid;gap:2rem;align-items:end}
+.big25{
+  font-size:clamp(9rem,26vw,20rem);line-height:.78;font-weight:800;
+  letter-spacing:-.06em;margin:0;
+  color:rgba(164,189,82,.14);
+  -webkit-text-stroke:2px var(--green);
+  position:relative;
+}
+.big25 span{color:var(--green);-webkit-text-stroke:0}
+.years-strip{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;
+  margin-top:clamp(2.5rem,5vw,4rem);
+}
+.years-strip .media{aspect-ratio:3/4;border-radius:var(--r-sm)}
+.years-strip .media:nth-child(even){margin-top:1.75rem}
+.years-strip .media img{filter:grayscale(1) sepia(.25) contrast(1.05)}
+.years-strip .media:hover img{filter:none}
+.years-film{
+  margin-top:clamp(2.5rem,5vw,4rem);border-radius:var(--r-lg);
+  overflow:hidden;box-shadow:0 20px 50px rgba(3,38,56,.35);
+  background:#000;
+}
+/* The film sits in the same frame whether it is showing its poster,
+   a local <video> or Drive's player. */
+#years-film{position:relative;display:block}
+#years-film .media{aspect-ratio:16/9;border-radius:0}
+#years-film .vplayer,#years-film .vframe{aspect-ratio:16/9}
+.years-film-cap{
+  margin:1rem 0 0;font-family:var(--font-label);font-size:var(--fs-xs);
+  letter-spacing:.06em;color:rgba(251,247,239,.62);
+}
+
+/* ---- css/sections/camp.css ---- */
+/* Pioneer Camp: panorama + feature cards. */
+.camp{background:var(--cream-2)}
+/* The camp header used to be a full-bleed band, which stretched a
+   547px-wide photograph across 1440px and made it visibly soft. It is now
+   an editorial split: the photograph sits in a contained frame close to
+   its native size, and the navy carries the full width instead. Restore
+   the full-bleed version only if a high-resolution original arrives. */
+.camp-hero{
+  background:var(--brand-800);color:var(--cream);
+  padding-block:clamp(2.5rem,6vw,4.5rem);
+}
+.camp-hero .wrap{display:grid;gap:clamp(1.75rem,4vw,3rem);align-items:center}
+.camp-hero .media{
+  position:relative;inset:auto;
+  aspect-ratio:3/2;border-radius:var(--r-lg);
+  box-shadow:var(--shadow-lg);
+}
+.camp-hero .media::after{
+  background:linear-gradient(180deg,transparent 62%,rgba(3,38,56,.28));
+}
+.camp-hero-in{position:relative;z-index:2;padding:0}
+.camp-hero h2{max-width:14ch}
+.camp-hero .lead{color:rgba(251,247,239,.86);margin-top:1.1rem}
+
+.camp-feats{
+  display:grid;gap:1rem;margin-top:clamp(2.5rem,5vw,4rem);
+  grid-template-columns:1fr;
+}
+.feat{
+  background:var(--cream);border-radius:var(--r-md);padding:1.5rem;
+  border:1px solid var(--line);display:flex;gap:1rem;align-items:flex-start;
+}
+.feat .ic{
+  width:46px;height:46px;flex:none;border-radius:12px;background:var(--brand-800);
+  display:grid;place-items:center;color:var(--green);
+}
+.feat h3{font-size:var(--fs-lg);margin-bottom:.3rem}
+.feat p{margin:0;color:var(--muted);font-size:var(--fs-sm)}
+
+/* ---- Photographs in "In the mountains, with friends" -----------------
+   A wide band under the text, then a strip of six below the features.
+   The section used to be text and icons alone, which read as unfinished. */
+.camp-band{margin:clamp(2.5rem,5vw,3.5rem) 0 0}
+.camp-band .media{aspect-ratio:16/9;border-radius:var(--r-lg)}
+
+.camp-strip{
+  display:grid;gap:1rem;
+  grid-template-columns:1fr;               /* breakpoints in responsive.css */
+  margin-top:clamp(2.5rem,5vw,3.5rem);
+}
+.camp-strip figure{margin:0}
+.camp-strip .media{aspect-ratio:3/4;border-radius:var(--r-md)}
+
+/* ---- css/sections/camp-history.css ---- */
+/* Camp history: then / transformation / today tabs. */
+.hist{background:var(--cream)}
+.hist-tabs{display:grid;gap:.75rem;margin-top:2.5rem;grid-template-columns:1fr}
+.hist-tab{
+  display:flex;align-items:center;gap:1rem;width:100%;text-align:left;
+  min-height:var(--tap);padding:1rem 1.25rem;cursor:pointer;
+  background:var(--cream-2);border:2px solid transparent;border-radius:var(--r-md);
+  font-weight:800;font-size:var(--fs-sm);transition:background-color .18s,border-color .18s;
+}
+.hist-tab .dot{width:14px;height:14px;border-radius:50%;background:var(--sand);flex:none}
+.hist-tab[aria-selected="true"]{background:var(--brand-800);color:var(--cream);border-color:var(--brand-800)}
+.hist-tab[aria-selected="true"] .dot{background:var(--green)}
+.hist-panel{margin-top:2rem;display:grid;gap:2rem;align-items:center}
+.hist-panel[hidden]{display:none}
+.hist-panel .media{aspect-ratio:4/3}
+.hist-panel .yr{font-family:var(--font-label);color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-size:var(--fs-xs)}
+.hist-panel h3{margin:.5rem 0 .8rem}
+
+/* Two of the three stages have no photograph yet — no archive image of the
+   Soviet camp, none of the refurbishment — so those panels run as text at
+   a readable measure rather than beside a stock photo of somewhere else. */
+.hist-panel--text{grid-template-columns:minmax(0,1fr)}
+.hist-panel--text > div{max-width:60ch}
+
+/* ---- css/sections/wet-games.css ---- */
+/* Wet Games: the loudest day of the summer, so the section is allowed to
+   be the loudest on the page — dark navy, three big words, and a wall of
+   portrait photographs pinned at alternating heights. */
+
+.wet{background:var(--brand-900);position:relative;overflow:hidden}
+.wet::before{
+  content:"";position:absolute;inset:0;opacity:.2;pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 8%,var(--green),transparent 42%),
+    radial-gradient(circle at 88% 78%,var(--brand-600),transparent 46%);
+}
+.wet-in{position:relative}
+
+/* the three words: water, laughter, friendship */
+.wet-words{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem 1.25rem;
+  margin:2rem 0 0;padding:0;
+}
+.wet-words li{
+  font-size:clamp(1.75rem,6vw,4rem);line-height:1;font-weight:800;
+  letter-spacing:-.02em;color:var(--green);
+}
+.wet-words li:nth-child(2){color:var(--cream)}
+.wet-words li .dot{color:var(--brand-mist);opacity:.5;margin-left:1.25rem}
+:lang(hy) .wet-words li{letter-spacing:0}
+
+.wet-copy{display:grid;gap:2rem;margin-top:clamp(2.5rem,5vw,3.5rem)}
+.wet-copy p{color:rgba(251,247,239,.78);margin:0}
+.wet-copy p + p{margin-top:1.1em}
+
+/* the photo wall — every frame is portrait, so they hang like a strip of
+   prints rather than sitting in a tidy grid */
+.wet-wall{
+  display:grid;gap:1rem;margin-top:clamp(2.5rem,5vw,4rem);
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.wet-wall figure{margin:0}
+.wet-wall .media{aspect-ratio:2/3;border-radius:var(--r-md)}
+.wet-wall figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:rgba(251,247,239,.62);margin-top:.6rem;line-height:1.45;
+}
+
+.wet-foot{
+  display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;
+  margin-top:clamp(2rem,4vw,3rem);
+}
+
+/* ---- css/sections/colour.css ---- */
+/* Colour Day.
+   Wet Games is dark and vertical; this one is the opposite — the warmest
+   surface on the page, sand rather than cream, because the day itself is
+   powder paint in full sun. One thing is allowed to be loud: the closing
+   group photograph breaks the 1240px column and runs edge to edge. It is
+   the only full-bleed image on the site, which is the point. */
+
+.colour{background:var(--sand)}
+
+.colour-copy{display:grid;gap:1.5rem;margin-top:clamp(2rem,4vw,3rem)}
+.colour-copy p{margin:0;color:var(--muted)}
+.colour-copy p + p{margin-top:1.1em}
+
+/* what the day needs — a packing list, not a feature grid */
+.colour-kit{list-style:none;margin:0;padding:0}
+.colour-kit li{
+  font-family:var(--font-label);font-size:var(--fs-sm);color:var(--brand-800);
+  padding:.7rem 0;border-top:2px dotted rgba(16,32,43,.25);
+}
+.colour-kit li:last-child{border-bottom:2px dotted rgba(16,32,43,.25)}
+
+.colour-set{
+  display:grid;gap:1rem;margin-top:clamp(2.5rem,5vw,4rem);
+  grid-template-columns:minmax(0,1fr);grid-auto-flow:dense;
+}
+.colour-set figure{margin:0}
+.colour-set .media{aspect-ratio:3/2;border-radius:var(--r-md)}
+.colour-set .colour-tall .media{aspect-ratio:2/3}
+.colour-set figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:var(--muted);margin-top:.55rem;line-height:1.45;
+}
+
+/* the payoff: full-bleed, no radius, no column */
+.colour-finale{margin:clamp(3rem,6vw,5rem) 0 0}
+.colour-finale .media{aspect-ratio:4/3;border-radius:0}
+.colour-finale figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:var(--muted);padding-top:.8rem;
+}
+
+/* the caption lines up with the text column even though the photo does not */
+.colour-finale figcaption .wrap{display:block}
+
+/* ---- css/sections/games.css ---- */
+/* Relays & team games.
+   These photographs are all landscape, so this section is built the
+   opposite way to Wet Games: one wide lead image, then a grid of
+   horizontal frames, with the two portraits set as a quieter coda. */
+
+.games{background:var(--cream-2)}
+
+.games-lead{margin-top:clamp(2rem,4vw,3rem)}
+.games-lead .media{aspect-ratio:16/10;border-radius:var(--r-lg)}
+.games-lead figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:var(--muted);margin-top:.7rem;
+}
+
+.games-copy{display:grid;gap:1.5rem;margin-top:clamp(2rem,4vw,3rem)}
+.games-copy p{margin:0;color:var(--muted)}
+.games-copy p + p{margin-top:1.1em}
+
+/* three short rules of the day, set as label-style chips */
+.games-rules{display:flex;flex-wrap:wrap;gap:.6rem;margin:0;padding:0}
+.games-rules li{
+  font-family:var(--font-label);font-size:var(--fs-xs);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--brand-800);
+  border:2px solid var(--sand);border-radius:var(--r-pill);
+  padding:.55rem 1.1rem;background:var(--cream);
+}
+
+.games-grid{
+  display:grid;gap:1rem;margin-top:clamp(2.5rem,5vw,4rem);
+  grid-template-columns:minmax(0,1fr);
+}
+.games-grid figure{margin:0}
+.games-grid .media{aspect-ratio:3/2;border-radius:var(--r-md)}
+.games-grid figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:var(--muted);margin-top:.55rem;line-height:1.45;
+}
+
+/* the two portraits + the watermelon: the quiet minute after the whistle */
+.games-faces{
+  display:grid;gap:1rem;margin-top:1rem;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.games-faces figure{margin:0}
+.games-faces .media{aspect-ratio:4/5;border-radius:var(--r-md)}
+.games-faces figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:var(--muted);margin-top:.55rem;
+}
+.games-foot{margin-top:clamp(2rem,4vw,3rem)}
+
+/* ---- css/sections/club.css ---- */
+/* Club nights.
+   The camp sections are daylight and open field; this one is the evening
+   indoors, so it sits on navy and the photographs are set in a single
+   uneven row — a strip of one evening rather than a grid of examples.
+   Widths are deliberately unequal (1.35 / 1 / 1.1) so it reads as a
+   sequence of moments, not a set of tiles. */
+
+.club{background:var(--brand-800);position:relative;overflow:hidden}
+.club::before{
+  content:"";position:absolute;inset:0;opacity:.22;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,var(--brand-600),transparent 60%);
+}
+.club-in{position:relative}
+
+.club-copy{display:grid;gap:1.5rem;margin-top:clamp(2rem,4vw,3rem)}
+.club-copy p{margin:0;color:rgba(251,247,239,.78)}
+.club-copy p + p{margin-top:1.1em}
+
+/* the shape of an evening, in four words */
+.club-run{display:flex;flex-wrap:wrap;gap:.6rem;margin:0;padding:0;list-style:none}
+.club-run li{
+  font-family:var(--font-label);font-size:var(--fs-xs);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--cream);
+  border:2px solid var(--line-dark);border-radius:var(--r-pill);
+  padding:.55rem 1.1rem;
+}
+
+.club-strip{
+  display:grid;gap:1rem;margin-top:clamp(2.5rem,5vw,4rem);
+  grid-template-columns:minmax(0,1fr);
+}
+.club-strip figure{margin:0}
+.club-strip .media{aspect-ratio:3/2;border-radius:var(--r-md)}
+.club-strip figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:rgba(251,247,239,.62);margin-top:.6rem;line-height:1.45;
+}
+
+.club-foot{margin-top:clamp(2rem,4vw,3rem)}
+
+/* ---- css/sections/gallery.css ---- */
+/* Photo gallery: filter chips + a uniform photo grid.
+
+   Every tile is the same 4:3 landscape frame and nothing stretches to match
+   a neighbour, so a photo can never be cropped into a tall strip. This
+   replaced a `column-count` masonry whose per-photo aspect classes
+   (.g-1 … .g-5) fought with the grid and produced exactly that. Those
+   classes still come out of js/config.js; they are deliberately neutralised
+   at the bottom of this file rather than removed, so config.js stays valid.
+
+   To go back to a staggered masonry: set .masonry to
+   `column-count:3; column-gap:1rem`, give `.masonry figure`
+   `break-inside:avoid`, and drop the aspect-ratio from `.gal-btn .media`
+   so each photo keeps its own proportions. Do not mix the two. */
+.gallery{background:var(--cream-2)}
+.gal-filters{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.75rem}
+.chip{
+  min-height:48px;padding:.5rem 1.25rem;border-radius:var(--r-pill);
+  border:2px solid var(--line);background:var(--cream);cursor:pointer;
+  font-weight:700;font-size:var(--fs-sm);
+}
+.chip[aria-pressed="true"]{background:var(--brand-800);color:var(--cream);border-color:var(--brand-800)}
+
+/* auto-fill handles 1 -> 4 columns on its own; no breakpoints needed.
+   240px steps it 1 -> 2 -> 3 -> 4 columns at roughly 320 / 600 / 900 / 1280;
+     min() keeps a single tile from overflowing a 320px phone. */
+.masonry{
+  margin-top:2rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));
+  gap:1rem;
+  align-items:start;
+}
+.masonry figure{margin:0;position:relative;height:auto}
+.masonry figure[hidden]{display:none}
+.gal-btn{
+  display:block;width:100%;height:auto;padding:0;border:0;background:none;cursor:pointer;
+  border-radius:var(--r-md);overflow:hidden;position:relative;
+}
+.gal-btn .media{border-radius:var(--r-md);aspect-ratio:4/3;height:auto}
+.masonry figcaption{
+  pointer-events:none;
+  position:absolute;left:0;right:0;bottom:0;z-index:3;
+  padding:1.5rem 1rem .9rem;text-align:left;
+  font-size:var(--fs-xs);font-weight:700;color:#fff;
+  background:linear-gradient(180deg,transparent,rgba(3,38,56,.8));
+  border-radius:0 0 var(--r-md) var(--r-md);
+}
+.masonry .tag{
+  font-family:var(--font-label);display:block;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-size:.75rem;
+  margin-bottom:.2rem;
+}
+/* The per-photo ratios from config.js. One frame for all of them here. */
+.masonry .g-1,.masonry .g-2,.masonry .g-3,.masonry .g-4,.masonry .g-5{aspect-ratio:4/3}
+
+/* ---- css/sections/videos.css ---- */
+/* Videos: cinematic dark section, featured film + cards. */
+.videos{background:var(--brand-900);position:relative}
+.video-main{margin-top:2.5rem;position:relative;border-radius:var(--r-lg);overflow:hidden}
+.video-main .media{aspect-ratio:16/9;border-radius:var(--r-lg)}
+.play{
+  position:absolute;inset:0;z-index:4;width:100%;border:0;background:transparent;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
+  cursor:pointer;color:#fff;
+}
+.play .ring{
+  width:84px;height:84px;border-radius:50%;background:rgba(251,247,239,.92);
+  display:grid;place-items:center;box-shadow:0 10px 30px rgba(3,38,56,.4);
+  transition:transform .2s ease,background-color .2s ease;
+}
+.play:hover .ring{transform:scale(1.08);background:#fff}
+.play .ring svg{margin-left:5px}
+.video-meta{padding:1.5rem 0 0}
+.video-meta h3{margin-bottom:.4rem}
+/* auto-fit, so the row fills itself whether there are two films or five.
+   No breakpoint needed. */
+.video-grid{
+  display:grid;gap:1.5rem;margin-top:2.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));
+}
+.vcard{background:rgba(251,247,239,.05);border:1px solid var(--line-dark);border-radius:var(--r-md);overflow:hidden}
+.vcard .thumb{position:relative}
+.vcard .media{aspect-ratio:16/9;border-radius:0}
+.vcard .play .ring{width:62px;height:62px}
+.vcard-body{padding:1.25rem}
+.vcard h4{font-size:var(--fs-lg);margin:0 0 .35rem;font-weight:800}
+.vcard p{margin:0;color:rgba(251,247,239,.7);font-size:var(--fs-sm)}
+.vdur{font-family:var(--font-label);font-size:.8rem;color:var(--green);letter-spacing:.1em}
+
+/* ---- Playback -------------------------------------------------------
+   The poster is swapped for a real <video> on the first press, so the
+   film costs a visitor nothing until they ask for it. The player keeps
+   the frame it replaced, so the layout does not jump. */
+.video-main,.vcard .thumb{position:relative;background:#000}
+.vplayer{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000}
+/* Drive's own player. It brings its own controls and its own black
+   letterboxing, so it only needs the frame and no border. */
+.vframe{display:block;width:100%;aspect-ratio:16/9;border:0;background:#000}
+.video-main .vplayer,.video-main .vframe{border-radius:var(--r-lg)}
+.video-main.is-playing .media,.vcard .thumb.is-playing .media{display:none}
+
+/* Shown only when a film's file is not in videos/ yet — the team sees
+   which name to use, a visitor never sees this at all. */
+.vmissing{
+  position:absolute;left:0;right:0;bottom:0;z-index:5;margin:0;
+  padding:.85rem 1rem;text-align:center;
+  font-size:var(--fs-xs);line-height:1.5;color:#fff;
+  background:rgba(3,38,56,.88);
+}
+.vmissing code{
+  font-family:var(--font-label);font-size:.95em;
+  background:rgba(164,189,82,.18);padding:.1em .35em;border-radius:4px;
+}
+
+/* ---- css/sections/blog.css ---- */
+/* Stories: editorial post cards. */
+.blog{background:var(--cream)}
+.posts{display:grid;gap:2rem;margin-top:2.75rem;grid-template-columns:1fr}
+.post{display:flex;flex-direction:column;background:transparent}
+.post .media{aspect-ratio:3/2}
+.post .media img[data-img="blog1"]{object-position:50% 4%}
+.post-cat{
+  font-family:var(--font-label);font-size:var(--fs-xs);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin:1.1rem 0 .5rem;
+}
+.post h3{font-size:var(--fs-xl)}
+.post p{color:var(--muted);margin:.6rem 0 1rem;font-size:var(--fs-sm)}
+.post-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:auto;flex-wrap:wrap}
+.post-date{font-family:var(--font-label);font-size:var(--fs-xs);color:var(--muted)}
+.post a.stretch::after{content:"";position:absolute;inset:0}
+.post{position:relative;min-width:0}
+
+/* No article pages exist yet, so the cards are previews rather than links. */
+.blog-note{margin-top:2.5rem;color:var(--muted);font-size:var(--fs-sm)}
+.blog-note a{font-weight:700;color:var(--brand-700)}
+
+/* ---- css/sections/impact.css ---- */
+/* Impact: statistics band. */
+.impact{background:var(--brand-800);color:var(--cream)}
+.stats{display:grid;gap:1px;margin-top:2.5rem;background:var(--line-dark);border:1px solid var(--line-dark);border-radius:var(--r-md);overflow:hidden}
+.stat{background:var(--brand-800);padding:2rem 1.5rem;text-align:center}
+.stat b{
+  display:block;font-size:clamp(3rem,9vw,4.5rem);line-height:1;font-weight:800;
+  letter-spacing:-.04em;color:var(--green);
+}
+.stat span{display:block;margin-top:.6rem;font-weight:700;font-size:var(--fs-sm)}
+.stat em{
+  display:block;font-family:var(--font-label);font-style:normal;font-size:.8rem;
+  color:rgba(251,247,239,.55);margin-top:.35rem;letter-spacing:.06em;
+}
+.stat.pending b{color:rgba(251,247,239,.5)}
+
+/* ---- css/sections/testimonials.css ---- */
+/* Testimonials carousel. */
+.voices{background:var(--cream-2)}
+.voice-track{margin-top:2.5rem}
+.voice{display:none;gap:2rem;align-items:center}
+.voice.active{display:grid}
+.voice .media{aspect-ratio:1/1;border-radius:var(--r-lg);max-width:340px}
+.voice blockquote{margin:0;font-size:var(--fs-xl);line-height:1.42;font-weight:700;letter-spacing:-.01em}
+.voice blockquote::before{content:"«";color:var(--accent)}
+.voice blockquote::after{content:"»";color:var(--accent)}
+.voice .who{margin-top:1.5rem}
+.voice .who b{display:block;font-size:var(--fs-lg)}
+.voice .who span{color:var(--muted);font-size:var(--fs-sm)}
+.voice-nav{display:flex;align-items:center;gap:.75rem;margin-top:2rem}
+.rnd{
+  width:var(--tap);height:var(--tap);border-radius:50%;border:2px solid var(--brand-800);
+  background:transparent;color:var(--brand-800);cursor:pointer;display:grid;place-items:center;
+}
+.rnd:hover{background:var(--brand-800);color:var(--cream)}
+.dots{display:flex;gap:.5rem;margin-left:.5rem}
+.dots button{
+  width:44px;height:44px;border:0;background:none;cursor:pointer;display:grid;place-items:center;
+}
+.dots button i{display:block;width:10px;height:10px;border-radius:50%;background:var(--sand)}
+.dots button[aria-current="true"] i{background:var(--accent);width:26px;border-radius:5px}
+
+/* ---- css/sections/involved.css ---- */
+/* Get Involved: three ways to take part. */
+.involved{background:var(--cream)}
+.ways{display:grid;gap:1.5rem;margin-top:2.75rem;grid-template-columns:1fr}
+.way{
+  border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+  background:var(--cream-2);display:flex;flex-direction:column;
+}
+.way .media{aspect-ratio:16/10;border-radius:0}
+.way-body{padding:1.75rem;display:flex;flex-direction:column;flex:1;gap:.5rem}
+.way h3{font-size:var(--fs-h3)}
+.way p{color:var(--muted);font-size:var(--fs-sm);margin:0}
+.way .btn{margin-top:auto;align-self:flex-start}
+.way--support{background:var(--brand-800);color:var(--cream);border-color:var(--brand-800)}
+.way--support p{color:rgba(251,247,239,.78)}
+
+/* ---- css/sections/donation-cta.css ---- */
+/* Full-width donation call to action. */
+.cta{position:relative;isolation:isolate;text-align:center;color:var(--cream)}
+.cta .media{position:absolute;inset:0;border-radius:0;z-index:-2}
+.cta-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(3,38,56,.82),rgba(5,51,76,.9))}
+.cta h2{max-width:18ch;margin-inline:auto}
+.cta .lead{margin:1.25rem auto 2.25rem;color:rgba(251,247,239,.88)}
+.cta .eyebrow{justify-content:center}
+.cta-note{margin:1.5rem 0 0;font-size:var(--fs-xs);color:rgba(251,247,239,.66);font-family:var(--font-label)}
+
+/* ---- css/sections/contact.css ---- */
+/* Contact details and social links. */
+.contact{background:var(--cream-2)}
+.contact-grid{display:grid;gap:2.5rem;margin-top:2.5rem}
+.cinfo li{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.cinfo .ic{width:44px;height:44px;flex:none;border-radius:12px;background:var(--brand-800);color:var(--green);display:grid;place-items:center}
+.cinfo b{display:block;font-size:var(--fs-xs);font-family:var(--font-label);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.cinfo a{
+  /* A phone number is one of the most likely things an older visitor will
+     tap, so it gets a full-size target rather than bare text height. */
+  display:inline-flex;align-items:center;min-height:44px;
+  font-weight:700;text-decoration:none;font-size:var(--fs-lg);color:var(--brand-700);
+  overflow-wrap:anywhere;
+}
+.contact-grid > *,.story-grid > *,.foot-grid > *{min-width:0}
+.foot-col a{overflow-wrap:anywhere}
+@media (max-width:420px){ .cinfo a{font-size:var(--fs-base)} }
+.cinfo a:hover{color:var(--accent)}
+.socials{display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap}
+.social{
+  min-height:var(--tap);display:inline-flex;align-items:center;gap:.6rem;
+  padding:0 1.25rem;border-radius:var(--r-pill);border:2px solid var(--line);
+  text-decoration:none;font-weight:700;background:var(--cream);
+}
+.social:hover{border-color:var(--brand-800);background:var(--brand-800);color:var(--cream)}
+
+/* Supporters abroad have a different point of contact from a local
+   family, so they get their own block rather than a fourth list item. */
+.partner{
+  margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--line);
+}
+.partner h3{font-size:var(--fs-lg);margin-bottom:.4rem}
+.partner > p{color:var(--muted);font-size:var(--fs-sm);margin-bottom:.5rem}
+.partner .cinfo a{font-size:var(--fs-base)}
+
+/* ---- css/sections/footer.css ---- */
+/* Footer and the persistent mobile donate bar. */
+.footer{background:var(--brand-900);color:var(--cream);padding-block:clamp(3rem,6vw,5rem) 8rem}
+.foot-grid{display:grid;gap:2.5rem}
+.foot-brand .brand{color:var(--cream);margin:0 0 1.25rem}
+.foot-mission{color:rgba(251,247,239,.72);max-width:38ch;font-size:var(--fs-sm)}
+.foot-col h3{font-family:var(--font-label);font-size:var(--fs-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:500;margin-bottom:1rem}
+.foot-col a{display:flex;align-items:center;min-height:48px;text-decoration:none;color:rgba(251,247,239,.85);font-weight:600}
+.foot-col a:hover{color:var(--green)}
+.foot-col .btn--donate{padding:.9rem 1.1rem;font-size:var(--fs-sm);white-space:nowrap;min-height:60px}
+.foot-bottom{
+  margin-top:3rem;padding-top:1.75rem;border-top:1px solid var(--line-dark);
+  display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;
+  color:rgba(251,247,239,.6);font-size:var(--fs-xs);font-family:var(--font-label);
+}
+
+
+
+
+/* ---- css/base/motion.css ---- */
+/* Scroll reveal + the prefers-reduced-motion opt-out. */
+/* Reveal only hides content once JavaScript has confirmed it is running
+   (the .js class is set in <head>). Without it every .reveal element stays
+   visible, so a script failure can never blank the page. */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.js .reveal.in{opacity:1;transform:none}
+.js .reveal.d1{transition-delay:.08s}.js .reveal.d2{transition-delay:.16s}.js .reveal.d3{transition-delay:.24s}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .js .reveal{opacity:1;transform:none}
+  .trail li::after{transform:scale(1)}
+  .btn:hover,.media--zoom:hover img.loaded{transform:none}
+}
+
+/* ---- css/responsive.css ---- */
+/* All breakpoints in one place: 600 / 900 / 1180 / 1280 / 1440 up, plus the small-phone overrides. Everything above is written mobile-first. */
+@media (min-width:600px){
+  .camp-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .colour-set{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .club-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .club-strip figure:first-child{grid-column:1 / -1}
+  .gives{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .prayers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .story-photos{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  .camp-feats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hist-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hero-actions .btn{flex:0 1 auto;min-width:240px}
+  .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ways{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:900px){
+  .camp-strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .header .btn--donate{display:inline-flex}
+  .story-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:start}
+  .story-photos{grid-template-columns:minmax(0,1fr);gap:2rem}
+  .story-photos figure:nth-child(2){margin-left:clamp(2rem,20%,8rem)}
+  .trail{margin-top:clamp(3.5rem,6vw,5.5rem);padding-left:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3.5rem 2rem}
+  .trail::before{display:none}
+  .trail li{padding-bottom:0;padding-top:2.75rem;border-top:3px dashed var(--sand)}
+  .trail li::before{left:0;top:-16px}
+  .trail li::after{left:8px;top:-8px}
+  .years-head{grid-template-columns:auto 1fr;gap:3rem}
+  .years-strip{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .hist-panel{grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem}
+  .wet-wall{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .wet-wall figure:nth-child(even){margin-top:2.5rem}
+  .games-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+  /* Colour Day: the portrait fills the left column across both rows, the
+     powder-throw runs wide beside it, and the two squares close the block. */
+  .colour-set{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+  .colour-set .colour-tall{grid-row:span 2;display:flex;flex-direction:column}
+  .colour-set .colour-tall .media{aspect-ratio:auto;flex:1 1 auto;min-height:0}
+  .colour-set .colour-wide{grid-column:span 2}
+  .colour-finale .media{aspect-ratio:21/9}
+  /* Club nights: equal height, unequal widths — a strip of one evening
+     rather than three matching tiles. */
+  .club-strip{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,1.1fr);gap:1.5rem}
+  .club-strip figure:first-child{grid-column:auto}
+  .club-strip .media{aspect-ratio:auto;height:clamp(260px,25vw,400px)}
+  .colour-copy{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:3rem;align-items:start}
+  .club-copy{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:3rem;align-items:start}
+  .gives{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+  /* only two cards here, so they get half the row each rather than
+     sitting in thirds with an empty column beside them */
+  .gives--two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .games-faces{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:1.5rem}
+  .games-copy{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:3rem;align-items:start}
+  .wet-copy{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem}
+  .posts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ways{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .voice{grid-template-columns:340px minmax(0,1fr);gap:3rem}
+  .contact-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:3.5rem}
+  .foot-grid{grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr))}
+  .footer{padding-bottom:clamp(3rem,6vw,5rem)}
+  .camp-hero .wrap{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+  .camp-feats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .feat{flex-direction:column;gap:1.1rem;padding:1.75rem}
+}
+/* The Armenian navigation is the widest of the three languages; the full
+   bar only appears once all seven labels genuinely fit. Below that the
+   menu button carries them — with bigger tap targets, which is no loss. */
+/* Armenian labels are the longest of the three languages, so the full bar
+   only appears once all seven genuinely fit. Below this the menu button
+   carries them — with larger tap targets, which is no loss. */
+@media (min-width:1440px){
+  .nav{display:flex}
+  .burger{display:none}
+  .header-in{gap:.75rem;padding-inline:0}
+  .header .wrap.header-in{padding-inline:1.5rem}
+  .header .btn--donate{padding:.9rem 1.3rem}
+}
+@media (min-width:1280px){
+  /* The gallery has no breakpoint: its grid is auto-fill, so it steps
+     1 -> 4 columns by itself. See css/sections/gallery.css. */
+  .story-grid{gap:4.5rem}
+}
+/* phones: the header carries the mark, the language switch and the menu.
+   The full name lives one tap away inside the menu. */
+@media (max-width:560px){
+  /* With the language switcher gone the phone header has room for the
+     name again — it was only ever hidden to fit ՀԱՅ | RU | EN. */
+  .header-in{gap:.5rem;min-height:72px}
+  .hero .lead{font-size:var(--fs-base)}
+  .burger{width:52px;height:52px}
+}
+@media (max-width:359px){
+  :root{--fs-base:1.0625rem;--fs-lg:1.1875rem}
+  .burger{width:48px;height:48px;padding:0 12px}
+}

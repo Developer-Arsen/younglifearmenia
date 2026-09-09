@@ -1,0 +1,30 @@
+/* Type helpers: eyebrow, lead, on-dark inversion, placeholder marker. */
+.eyebrow{
+  font-family:var(--font-label);
+  font-size:var(--fs-xs);
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 1rem;
+  display:flex;align-items:center;gap:.7rem;
+}
+.eyebrow::before{
+  content:"";width:26px;height:2px;background:var(--accent);flex:none;
+}
+.on-dark .eyebrow,.hero .eyebrow,.camp-hero .eyebrow,.cta .eyebrow{color:var(--green)}
+.on-dark .eyebrow::before,.hero .eyebrow::before,.camp-hero .eyebrow::before,.cta .eyebrow::before{background:var(--green)}
+.lead{font-size:var(--fs-lg);line-height:1.62;color:var(--muted);max-width:60ch}
+.on-dark{color:var(--cream)}
+.on-dark .lead{color:rgba(251,247,239,.82)}
+.head-block{max-width:44ch}
+.head-block h2 + .lead{margin-top:1.25rem}
+
+/* placeholder markers — everything the Young Life team still needs to supply */
+.ph{
+  border-bottom:2px dotted var(--green);
+  background:rgba(164,189,82,.12);
+  padding:0 .2em;border-radius:3px;
+}
+.on-dark .ph,.footer .ph{background:rgba(164,189,82,.1);border-bottom-color:rgba(164,189,82,.55)}
+b.ph{display:inline-block}

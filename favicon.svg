@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Young Life Armenia">
+  <rect width="64" height="64" rx="14" fill="#05334C"/>
+  <path d="M8 50 L22 30 L31 41 L42 24 L56 50 Z" fill="#A4BD52"/>
+  <text x="32" y="24" font-family="Helvetica,Arial,sans-serif" font-size="20" font-weight="700"
+        fill="#FBF7EF" text-anchor="middle">YL</text>
+</svg>

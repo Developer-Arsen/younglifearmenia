@@ -1,0 +1,43 @@
+/* Colour Day.
+   Wet Games is dark and vertical; this one is the opposite — the warmest
+   surface on the page, sand rather than cream, because the day itself is
+   powder paint in full sun. One thing is allowed to be loud: the closing
+   group photograph breaks the 1240px column and runs edge to edge. It is
+   the only full-bleed image on the site, which is the point. */
+
+.colour{background:var(--sand)}
+
+.colour-copy{display:grid;gap:1.5rem;margin-top:clamp(2rem,4vw,3rem)}
+.colour-copy p{margin:0;color:var(--muted)}
+.colour-copy p + p{margin-top:1.1em}
+
+/* what the day needs — a packing list, not a feature grid */
+.colour-kit{list-style:none;margin:0;padding:0}
+.colour-kit li{
+  font-family:var(--font-label);font-size:var(--fs-sm);color:var(--brand-800);
+  padding:.7rem 0;border-top:2px dotted rgba(16,32,43,.25);
+}
+.colour-kit li:last-child{border-bottom:2px dotted rgba(16,32,43,.25)}
+
+.colour-set{
+  display:grid;gap:1rem;margin-top:clamp(2.5rem,5vw,4rem);
+  grid-template-columns:minmax(0,1fr);grid-auto-flow:dense;
+}
+.colour-set figure{margin:0}
+.colour-set .media{aspect-ratio:3/2;border-radius:var(--r-md)}
+.colour-set .colour-tall .media{aspect-ratio:2/3}
+.colour-set figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:var(--muted);margin-top:.55rem;line-height:1.45;
+}
+
+/* the payoff: full-bleed, no radius, no column */
+.colour-finale{margin:clamp(3rem,6vw,5rem) 0 0}
+.colour-finale .media{aspect-ratio:4/3;border-radius:0}
+.colour-finale figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:var(--muted);padding-top:.8rem;
+}
+
+/* the caption lines up with the text column even though the photo does not */
+.colour-finale figcaption .wrap{display:block}

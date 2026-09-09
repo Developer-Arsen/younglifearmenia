@@ -1,0 +1,66 @@
+/* Scripture band.
+   The verse the ministry is built on, given its own quiet full-width
+   moment between the story and the camp — set large, centred, and
+   never competing with a photograph. */
+
+.scripture{
+  background:var(--brand-800);color:var(--cream);
+  text-align:center;position:relative;overflow:hidden;
+}
+.scripture::before{
+  content:"";position:absolute;inset:0;opacity:.14;pointer-events:none;
+  background:radial-gradient(circle at 50% 0%,var(--green),transparent 62%);
+}
+.scripture-in{position:relative;max-width:56ch;margin-inline:auto}
+.scripture blockquote{
+  margin:0;font-size:clamp(1.5rem,1rem + 2.6vw,2.75rem);
+  line-height:1.34;font-weight:700;letter-spacing:-.01em;
+}
+.scripture blockquote em{
+  font-style:normal;color:var(--green);
+}
+.scripture cite{
+  display:block;margin-top:1.75rem;font-style:normal;
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(251,247,239,.7);
+}
+.scripture .mission{
+  margin:2.5rem auto 0;padding-top:2rem;
+  border-top:1px solid var(--line-dark);
+  font-size:var(--fs-lg);color:rgba(251,247,239,.85);max-width:48ch;
+}
+
+/* Ways to give — the real asks, with real amounts. */
+.gives{display:grid;gap:1rem;margin-top:2.5rem;grid-template-columns:minmax(0,1fr)}
+.give{
+  display:flex;gap:1.1rem;align-items:flex-start;
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:var(--r-md);padding:1.5rem;
+}
+.give{flex-wrap:wrap}
+.give > div{min-width:0;flex:1 1 200px}   /* the text column must be allowed to shrink */
+.give .amount{
+  flex:none;min-width:92px;font-weight:800;font-size:1.5rem;
+  color:var(--accent);line-height:1.1;letter-spacing:-.02em;
+}
+.give .amount small{
+  display:block;font-family:var(--font-label);font-size:.75rem;
+  font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-top:.25rem;
+}
+.give h3{font-size:var(--fs-lg);margin-bottom:.35rem}
+.give p{margin:0;color:var(--muted);font-size:var(--fs-sm)}
+
+/* Prayer requests, as the handout lists them. */
+.prayers{display:grid;gap:1rem;margin-top:1.5rem;grid-template-columns:minmax(0,1fr)}
+.prayer{
+  padding:1.25rem 1.5rem;border-left:3px solid var(--green);
+  background:rgba(164,189,82,.1);border-radius:0 var(--r-md) var(--r-md) 0;
+  color:var(--muted);font-size:var(--fs-sm);
+}
+
+/* Ways that cost time rather than money: same card, but the "amount"
+   slot carries a duration instead of a figure. */
+.give--time .amount{
+  font-size:1.25rem;color:var(--brand-700);
+}

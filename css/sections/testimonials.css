@@ -1,0 +1,24 @@
+/* Testimonials carousel. */
+.voices{background:var(--cream-2)}
+.voice-track{margin-top:2.5rem}
+.voice{display:none;gap:2rem;align-items:center}
+.voice.active{display:grid}
+.voice .media{aspect-ratio:1/1;border-radius:var(--r-lg);max-width:340px}
+.voice blockquote{margin:0;font-size:var(--fs-xl);line-height:1.42;font-weight:700;letter-spacing:-.01em}
+.voice blockquote::before{content:"«";color:var(--accent)}
+.voice blockquote::after{content:"»";color:var(--accent)}
+.voice .who{margin-top:1.5rem}
+.voice .who b{display:block;font-size:var(--fs-lg)}
+.voice .who span{color:var(--muted);font-size:var(--fs-sm)}
+.voice-nav{display:flex;align-items:center;gap:.75rem;margin-top:2rem}
+.rnd{
+  width:var(--tap);height:var(--tap);border-radius:50%;border:2px solid var(--brand-800);
+  background:transparent;color:var(--brand-800);cursor:pointer;display:grid;place-items:center;
+}
+.rnd:hover{background:var(--brand-800);color:var(--cream)}
+.dots{display:flex;gap:.5rem;margin-left:.5rem}
+.dots button{
+  width:44px;height:44px;border:0;background:none;cursor:pointer;display:grid;place-items:center;
+}
+.dots button i{display:block;width:10px;height:10px;border-radius:50%;background:var(--sand)}
+.dots button[aria-current="true"] i{background:var(--accent);width:26px;border-radius:5px}

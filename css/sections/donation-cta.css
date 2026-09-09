@@ -1,0 +1,8 @@
+/* Full-width donation call to action. */
+.cta{position:relative;isolation:isolate;text-align:center;color:var(--cream)}
+.cta .media{position:absolute;inset:0;border-radius:0;z-index:-2}
+.cta-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(3,38,56,.82),rgba(5,51,76,.9))}
+.cta h2{max-width:18ch;margin-inline:auto}
+.cta .lead{margin:1.25rem auto 2.25rem;color:rgba(251,247,239,.88)}
+.cta .eyebrow{justify-content:center}
+.cta-note{margin:1.5rem 0 0;font-size:var(--fs-xs);color:rgba(251,247,239,.66);font-family:var(--font-label)}

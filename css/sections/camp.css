@@ -1,0 +1,52 @@
+/* Pioneer Camp: panorama + feature cards. */
+.camp{background:var(--cream-2)}
+/* The camp header used to be a full-bleed band, which stretched a
+   547px-wide photograph across 1440px and made it visibly soft. It is now
+   an editorial split: the photograph sits in a contained frame close to
+   its native size, and the navy carries the full width instead. Restore
+   the full-bleed version only if a high-resolution original arrives. */
+.camp-hero{
+  background:var(--brand-800);color:var(--cream);
+  padding-block:clamp(2.5rem,6vw,4.5rem);
+}
+.camp-hero .wrap{display:grid;gap:clamp(1.75rem,4vw,3rem);align-items:center}
+.camp-hero .media{
+  position:relative;inset:auto;
+  aspect-ratio:3/2;border-radius:var(--r-lg);
+  box-shadow:var(--shadow-lg);
+}
+.camp-hero .media::after{
+  background:linear-gradient(180deg,transparent 62%,rgba(3,38,56,.28));
+}
+.camp-hero-in{position:relative;z-index:2;padding:0}
+.camp-hero h2{max-width:14ch}
+.camp-hero .lead{color:rgba(251,247,239,.86);margin-top:1.1rem}
+
+.camp-feats{
+  display:grid;gap:1rem;margin-top:clamp(2.5rem,5vw,4rem);
+  grid-template-columns:1fr;
+}
+.feat{
+  background:var(--cream);border-radius:var(--r-md);padding:1.5rem;
+  border:1px solid var(--line);display:flex;gap:1rem;align-items:flex-start;
+}
+.feat .ic{
+  width:46px;height:46px;flex:none;border-radius:12px;background:var(--brand-800);
+  display:grid;place-items:center;color:var(--green);
+}
+.feat h3{font-size:var(--fs-lg);margin-bottom:.3rem}
+.feat p{margin:0;color:var(--muted);font-size:var(--fs-sm)}
+
+/* ---- Photographs in "In the mountains, with friends" -----------------
+   A wide band under the text, then a strip of six below the features.
+   The section used to be text and icons alone, which read as unfinished. */
+.camp-band{margin:clamp(2.5rem,5vw,3.5rem) 0 0}
+.camp-band .media{aspect-ratio:16/9;border-radius:var(--r-lg)}
+
+.camp-strip{
+  display:grid;gap:1rem;
+  grid-template-columns:1fr;               /* breakpoints in responsive.css */
+  margin-top:clamp(2.5rem,5vw,3.5rem);
+}
+.camp-strip figure{margin:0}
+.camp-strip .media{aspect-ratio:3/4;border-radius:var(--r-md)}

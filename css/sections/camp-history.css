@@ -1,0 +1,23 @@
+/* Camp history: then / transformation / today tabs. */
+.hist{background:var(--cream)}
+.hist-tabs{display:grid;gap:.75rem;margin-top:2.5rem;grid-template-columns:1fr}
+.hist-tab{
+  display:flex;align-items:center;gap:1rem;width:100%;text-align:left;
+  min-height:var(--tap);padding:1rem 1.25rem;cursor:pointer;
+  background:var(--cream-2);border:2px solid transparent;border-radius:var(--r-md);
+  font-weight:800;font-size:var(--fs-sm);transition:background-color .18s,border-color .18s;
+}
+.hist-tab .dot{width:14px;height:14px;border-radius:50%;background:var(--sand);flex:none}
+.hist-tab[aria-selected="true"]{background:var(--brand-800);color:var(--cream);border-color:var(--brand-800)}
+.hist-tab[aria-selected="true"] .dot{background:var(--green)}
+.hist-panel{margin-top:2rem;display:grid;gap:2rem;align-items:center}
+.hist-panel[hidden]{display:none}
+.hist-panel .media{aspect-ratio:4/3}
+.hist-panel .yr{font-family:var(--font-label);color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-size:var(--fs-xs)}
+.hist-panel h3{margin:.5rem 0 .8rem}
+
+/* Two of the three stages have no photograph yet — no archive image of the
+   Soviet camp, none of the refurbishment — so those panels run as text at
+   a readable measure rather than beside a stock photo of somewhere else. */
+.hist-panel--text{grid-template-columns:minmax(0,1fr)}
+.hist-panel--text > div{max-width:60ch}

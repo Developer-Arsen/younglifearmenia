@@ -1,0 +1,20 @@
+/* Stories: editorial post cards. */
+.blog{background:var(--cream)}
+.posts{display:grid;gap:2rem;margin-top:2.75rem;grid-template-columns:1fr}
+.post{display:flex;flex-direction:column;background:transparent}
+.post .media{aspect-ratio:3/2}
+.post .media img[data-img="blog1"]{object-position:50% 4%}
+.post-cat{
+  font-family:var(--font-label);font-size:var(--fs-xs);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin:1.1rem 0 .5rem;
+}
+.post h3{font-size:var(--fs-xl)}
+.post p{color:var(--muted);margin:.6rem 0 1rem;font-size:var(--fs-sm)}
+.post-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:auto;flex-wrap:wrap}
+.post-date{font-family:var(--font-label);font-size:var(--fs-xs);color:var(--muted)}
+.post a.stretch::after{content:"";position:absolute;inset:0}
+.post{position:relative;min-width:0}
+
+/* No article pages exist yet, so the cards are previews rather than links. */
+.blog-note{margin-top:2.5rem;color:var(--muted);font-size:var(--fs-sm)}
+.blog-note a{font-weight:700;color:var(--brand-700)}

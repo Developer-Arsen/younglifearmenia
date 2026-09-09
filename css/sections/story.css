@@ -1,0 +1,37 @@
+/* Our Story: split editorial layout + the trail timeline. */
+.story{background:var(--cream)}
+.story-grid{display:grid;gap:clamp(2rem,4vw,3.5rem);align-items:center}
+.story-photos{position:relative;display:grid;gap:1rem}
+.story-photos .media--then{aspect-ratio:4/3}
+.story-photos .media--now{aspect-ratio:4/3}
+.photo-cap{
+  font-family:var(--font-label);font-size:var(--fs-xs);color:var(--muted);
+  margin:.55rem 0 0;letter-spacing:.02em;
+}
+
+/* the trail */
+/* The milestone timeline these style is not in the page right now: every
+   date read "to be confirmed", so the markup was removed from index.html.
+   Kept here so it can be restored once the real years are known. */
+.trail{margin-top:clamp(3rem,6vw,5rem);position:relative;padding-left:44px}
+.trail::before{
+  content:"";position:absolute;left:13px;top:8px;bottom:8px;width:0;
+  border-left:3px dashed var(--sand);
+}
+.trail li{position:relative;padding-bottom:2.25rem}
+.trail li:last-child{padding-bottom:0}
+.trail li::before{
+  content:"";position:absolute;left:-44px;top:2px;width:30px;height:30px;
+  border-radius:50%;background:var(--cream);border:3px solid var(--brand-600);
+}
+.trail li::after{
+  content:"";position:absolute;left:-36px;top:10px;width:14px;height:14px;
+  border-radius:50%;background:var(--brand-600);transform:scale(0);
+  transition:transform .4s cubic-bezier(.2,1.4,.4,1);
+}
+.trail li.in::after{transform:scale(1)}
+.trail li:last-child::before{border-color:var(--accent)}
+.trail li:last-child::after{background:var(--accent)}
+.trail .yr{font-family:var(--font-label);font-size:var(--fs-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block}
+.trail h3{font-size:var(--fs-xl);margin:.3rem 0 .4rem}
+.trail p{color:var(--muted);margin:0;max-width:52ch;font-size:var(--fs-sm)}

@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#05334C" name="theme-color"/>
+<!-- Young Life Armenia — homepage.
+     Structure and the four things you edit before launch are documented
+     in README.md. Nothing on this page processes a donation; every
+     Donate button redirects to DONATION_URL in js/config.js. -->
+<title>Young Life Armenia — Hope That Changes Lives</title>
+<meta content="Young Life Armenia — youth ministry, Pioneer Camp and 25 years of history." name="description"/>
+
+
+
+
+<link href="https://example.org/" rel="canonical"/>
+<!-- TODO before launch: replace example.org above and in og:url / og:image
+     with the real domain. Search the repo for "example.org". -->
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="favicon.svg" rel="apple-touch-icon"/>
+<link href="site.webmanifest" rel="manifest"/>
+<meta content="website" property="og:type"/>
+<meta content="Young Life Armenia" property="og:site_name"/>
+
+
+
+<meta content="Young Life Armenia — Hope That Changes Lives" property="og:title"/>
+<meta content="Young Life Armenia — youth ministry, Pioneer Camp and 25 years of history." property="og:description"/>
+<meta content="https://example.org/" property="og:url"/>
+<meta content="https://example.org/images/games/games-hoop-relay.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<!-- Marks that scripting is available. The reveal animation only hides
+     content when this is set, so text is never invisible without JS. -->
+<script>document.documentElement.className += " js";</script>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<!-- Source stylesheets, in cascade order: tokens -> base -> components
+     -> sections -> motion -> responsive. Run ./build.sh before deploying
+     to replace all of these with a single minified dist/styles.css. -->
+<link rel="stylesheet" href="styles.css?v=21">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<!-- ========================= HEADER ========================= -->
+<header class="header" id="header">
+<div class="wrap header-in">
+<a class="brand" href="#top">
+<span aria-hidden="true" class="brand-mark">YL</span>
+<span class="brand-name">
+<b>Young Life</b>
+<span>Armenia</span>
+</span>
+</a>
+<nav aria-label="Main menu" class="nav">
+<a href="#story">Our Story</a>
+<span class="has-sub" data-open="false">
+<button aria-controls="submenu-camp" aria-expanded="false" class="sub-toggle" type="button">
+<span>Pioneer Camp</span>
+<svg aria-hidden="true" class="chev" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="14"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<span class="submenu" id="submenu-camp">
+<a href="#camp"><span>About the camp</span></a>
+<a href="#camp-history"><span>Camp history</span></a>
+<a href="#wet-games"><span>Water Games</span><small>the wettest day of summer</small></a>
+<a href="#colour-day"><span>Colour Day</span><small>paint, foam and a hosepipe</small></a>
+<a href="#games"><span>Relays &amp; games</span><small>team competitions</small></a>
+</span>
+</span>
+<a href="#club">Club Nights</a>
+<a href="#years">25 Years</a>
+<a href="#gallery">Gallery</a>
+<a href="#videos">Videos</a>
+<a href="#blog">Stories</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<a class="btn btn--donate js-donate" href="#">DONATE</a>
+<button aria-controls="menu" aria-expanded="false" aria-label="Open menu" class="burger" id="burger" type="button">
+<i></i><i></i><i></i>
+</button>
+</div>
+</header>
+<!-- ========================= MOBILE MENU ========================= -->
+<div aria-label="Menu" aria-modal="true" class="menu" hidden="" id="menu" role="dialog">
+<div class="wrap" style="display:flex;flex-direction:column;flex:1">
+<div class="menu-top">
+<span class="brand-name" style="color:var(--cream)">
+<b>Young Life</b>
+<span>Armenia</span>
+</span>
+<button aria-label="Close menu" class="menu-close" id="menuClose" type="button">×</button>
+</div>
+<nav aria-label="Menu">
+<a href="#story">Our Story</a>
+<a href="#camp">Pioneer Camp</a>
+<span class="subnav">
+<a href="#camp-history">Camp history</a>
+<a href="#wet-games">Water Games</a>
+<a href="#colour-day">Colour Day</a>
+<a href="#games">Relays &amp; games</a>
+</span>
+<a href="#club">Club Nights</a>
+<a href="#years">25 Years</a>
+<a href="#gallery">Gallery</a>
+<a href="#videos">Videos</a>
+<a href="#blog">Stories</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="menu-foot">
+
+<a class="btn btn--donate btn--lg btn--block js-donate" href="#">
+<span aria-hidden="true" class="heart">♥</span>
+<span>DONATE</span>
+</a>
+</div>
+</div>
+</div>
+<main id="main">
+<!-- ========================= HERO ========================= -->
+<section class="hero" id="top">
+<div aria-hidden="true" class="media">
+<span class="scene scene--ridge"></span>
+<img alt="" data-img="hero" decoding="async" fetchpriority="high"/>
+</div>
+<div aria-hidden="true" class="hero-shade"></div>
+<div class="wrap hero-in">
+<p class="eyebrow reveal">Youth ministry in Armenia</p>
+<h1 class="reveal d1">Hope That Changes Lives</h1>
+<p class="lead reveal d2">Young Life Armenia walks alongside young people, builds authentic friendships, develops leaders, and creates spaces where teenagers can discover hope, purpose, and faith.</p>
+<div class="hero-actions reveal d3">
+      <a class="btn btn--light btn--lg" href="#camp">SEE PIONEER CAMP</a>
+      <a class="btn btn--outline btn--lg" href="#story">OUR STORY</a>
+    </div>
+</div>
+</section>
+<!-- ========================= OUR STORY ========================= -->
+<section class="section story" id="story">
+<div class="wrap">
+<div class="story-grid">
+<div class="head-block reveal">
+<p class="eyebrow">How it started</p>
+<h2>Our Story</h2>
+<p class="lead">It started with a few people who decided to spend time with teenagers — no conditions, no hurry.</p>
+<p>In 301 AD Armenia became the first country in the world to embrace Christianity as its national faith. After the Soviet decades of the 20th century, the country regained independence in 1991 and returned to its spiritual heritage.</p>
+<p>Young Life Armenia brings the Gospel to young people throughout the country. Through lasting friendships, leaders help them consider the direction of their lives and offer hope for the future.</p>
+<p><a class="link" href="#years">Read the 25-year story <span aria-hidden="true" class="arw">→</span></a></p>
+</div>
+<div class="story-photos reveal d1">
+<figure>
+<div class="media media--now media--zoom">
+<span aria-hidden="true" class="scene scene--people"></span>
+<img alt="Five teenagers around a café table with iced coffees, laughing" data-img="storyNew" decoding="async" loading="lazy"/>
+</div>
+<figcaption class="photo-cap">Today — an ordinary afternoon</figcaption>
+</figure>
+<figure>
+<div class="media media--now media--zoom">
+<span aria-hidden="true" class="scene scene--sun"></span>
+<img alt="Three girls playing cards at a table by a window" data-img="storyFriends" decoding="async" loading="lazy"/>
+</div>
+<figcaption class="photo-cap">Nothing planned, and nobody in a hurry</figcaption>
+</figure>
+</div>
+</div>
+<!-- A milestone timeline stood here. Every date was still "to be
+     confirmed", so it was removed rather than shipped as five empty
+     cards. The .trail styles are kept in css/sections/story.css for
+     when the real years arrive. -->
+</div>
+</section>
+<!-- ========================= SCRIPTURE + MISSION ========================= -->
+<section class="section scripture" id="mission">
+<div class="wrap scripture-in">
+<blockquote class="reveal">
+<span>“The harvest is plentiful, but the workers are few. Ask the Lord of the harvest, therefore, to send out workers into his harvest field.”</span>
+</blockquote>
+<cite class="reveal d1">Matthew 9:37</cite>
+<p class="mission reveal d2">Our mission is introducing adolescents to Jesus Christ and helping them grow in their faith.</p>
+</div>
+</section>
+<!-- ========================= 25 YEARS ========================= -->
+<section class="section years on-dark" id="years">
+<div class="wrap years-in">
+<div class="years-head">
+<p aria-hidden="true" class="big25 reveal">2<span>5</span></p>
+<div class="head-block reveal d1">
+<p class="eyebrow">A quarter of a century</p>
+<h2>25 Years in Armenia</h2>
+<p class="lead">Twenty-five years measured in people. The teenagers from the first club are parents now, and their children come to the same camp.</p>
+</div>
+</div>
+<div aria-hidden="true" class="rule" style="margin-top:3rem"></div>
+<div class="years-film reveal">
+<!-- The anniversary film. Filled by js/components/videos.js from the
+     entry marked years:true in js/config.js (YL_VIDEOS) — the same film
+     also appears in the Videos section. Nothing is requested from Google
+     until a visitor presses play; without JavaScript the link below
+     stands in its place. -->
+<div id="years-film"></div>
+<noscript>
+<p class="years-film-cap"><a class="link" href="https://drive.google.com/file/d/1eWlC55DMVBWHReOEMnwGtr-Aqeaz4MS2/view">Watch the 25th anniversary film <span aria-hidden="true" class="arw">→</span></a></p>
+</noscript>
+</div>
+<p class="years-film-cap">Archive footage and today's camp, twenty-five years side by side.</p>
+<div class="years-strip">
+<div class="media media--zoom reveal"><span aria-hidden="true" class="scene scene--archive"></span><img alt="A team walking together, holding each other's legs" data-img="arch1" decoding="async" loading="lazy"/></div>
+<div class="media media--zoom reveal d1"><span aria-hidden="true" class="scene scene--stone"></span><img alt="A girl caught in a jet of water during the water games" data-img="arch2" decoding="async" loading="lazy"/></div>
+<div class="media media--zoom reveal d2"><span aria-hidden="true" class="scene scene--fire"></span><img alt="Two leaders on stage during a club night" data-img="arch3" decoding="async" loading="lazy"/></div>
+<div class="media media--zoom reveal d3"><span aria-hidden="true" class="scene scene--people"></span><img alt="The camp courtyard, with the Armenian flag and forest behind" data-img="arch4" decoding="async" loading="lazy"/></div>
+</div>
+</div>
+</section>
+<!-- ========================= PIONEER CAMP ========================= -->
+<section class="camp" id="camp">
+<div class="camp-hero">
+<div class="wrap">
+<div class="camp-hero-in">
+<p class="eyebrow reveal">The camp</p>
+<h2 class="reveal d1">Pioneer Camp</h2>
+<p class="lead reveal d2">A place where friendship, adventure and faith meet.</p>
+</div>
+<div class="media media--zoom reveal d1"><span aria-hidden="true" class="scene scene--forest"></span><img alt="The main building at Pioneer Camp, with forested hills behind" data-img="campHero" decoding="async" loading="lazy"/></div>
+</div>
+</div>
+</div>
+<div class="wrap section">
+<div class="story-grid">
+<div class="head-block reveal">
+<h3 style="font-size:var(--fs-h2)">In the mountains, with friends</h3>
+</div>
+<div class="reveal d1">
+<p>Pioneer Camp is more than buildings and tents. It is a few days when the phone stays in the bag and people start hearing each other.</p>
+<p>Days are spent hiking, playing, sharing meals and sitting around the fire. Evenings are for conversation — about questions, doubts and hope.</p>
+<p><a class="link" href="#camp-history">The camp’s history <span aria-hidden="true" class="arw">→</span></a></p>
+</div>
+</div>
+<figure class="camp-band reveal d2">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--ridge"></span><img alt="A line of young people walking up a green slope below a snow-streaked peak" data-img="mtnRidge" decoding="async" loading="lazy"/></div>
+<figcaption class="photo-cap">Walking out under the peak</figcaption>
+</figure>
+<ul class="camp-feats">
+<li class="feat reveal">
+<span aria-hidden="true" class="ic"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M3 20l7-14 4 8 2-3 5 9z"></path></svg></span>
+<div><h3>Hiking</h3><p>Day routes into the mountains and down to the rivers.</p></div>
+</li>
+<li class="feat reveal d1">
+<span aria-hidden="true" class="ic"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M12 3c2 4 5 5 5 9a5 5 0 01-10 0c0-4 3-5 5-9z"></path><path d="M4 21h16"></path></svg></span>
+<div><h3>Campfire</h3><p>Evening conversations, songs and stories.</p></div>
+</li>
+<li class="feat reveal d2">
+<span aria-hidden="true" class="ic"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18M3 12h18"></path></svg></span>
+<div><h3>Sport and games</h3><p>Football, volleyball and camp-wide tournaments.</p></div>
+</li>
+<li class="feat reveal d3">
+<span aria-hidden="true" class="ic"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M4 20V9l8-5 8 5v11"></path><path d="M9 20v-6h6v6"></path></svg></span>
+<div><h3>Cabins and shared meals</h3><p>Shared rooms, shared food, a shared day.</p></div>
+</li>
+</ul>
+<div class="camp-strip">
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--ridge"></span><img alt="A group climbing a grassy ridge in single file" data-img="mtnUphill" decoding="async" loading="lazy"/></div>
+<figcaption class="photo-cap">The last stretch uphill</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--stone"></span><img alt="Two hikers with backpacks looking out over a snow-covered gorge" data-img="mtnHikers" decoding="async" loading="lazy"/></div>
+<figcaption class="photo-cap">Weather coming in across the gorge</figcaption>
+</figure>
+<figure class="reveal d2">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--sun"></span><img alt="A group riding in the back of a truck across an open green plain" data-img="mtnTruck" decoding="async" loading="lazy"/></div>
+<figcaption class="photo-cap">Getting there is half of it</figcaption>
+</figure>
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--forest"></span><img alt="Footballers sitting on the grass with their coach between halves" data-img="sportHuddle" decoding="async" loading="lazy"/></div>
+<figcaption class="photo-cap">Catching breath between halves</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--people"></span><img alt="Two players in red and white embracing after a match" data-img="sportEmbrace" decoding="async" loading="lazy"/></div>
+<figcaption class="photo-cap">Full time</figcaption>
+</figure>
+<figure class="reveal d2">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--forest"></span><img alt="A football match on a pitch with wooded hills behind" data-img="sportMatch" decoding="async" loading="lazy"/></div>
+<figcaption class="photo-cap">The match, with the valley behind</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<!-- ========================= CAMP HISTORY ========================= -->
+<section class="section hist" id="camp-history">
+<div class="wrap">
+<div class="head-block reveal">
+<p class="eyebrow">Camp history</p>
+<h2>Then, transformation, today</h2>
+<p class="lead">Choose a stage and see how the camp has changed.</p>
+</div>
+<div aria-label="Camp stages" class="hist-tabs" role="tablist">
+<button aria-controls="panel-then" aria-selected="true" class="hist-tab" id="tab-then" role="tab" type="button">
+<span aria-hidden="true" class="dot"></span><span>The old camp</span>
+</button>
+<button aria-controls="panel-mid" aria-selected="false" class="hist-tab" id="tab-mid" role="tab" tabindex="-1" type="button">
+<span aria-hidden="true" class="dot"></span><span>The transformation</span>
+</button>
+<button aria-controls="panel-now" aria-selected="false" class="hist-tab" id="tab-now" role="tab" tabindex="-1" type="button">
+<span aria-hidden="true" class="dot"></span><span>The camp today</span>
+</button>
+</div>
+<div aria-labelledby="tab-then" class="hist-panel hist-panel--text" id="panel-then" role="tabpanel" tabindex="0">
+<div>
+<span class="yr">the Soviet years</span>
+<h3>A former Soviet camp</h3>
+<p>This place was once a gathering ground for Soviet youth, where Armenian teenagers were taught atheism and communism.</p>
+</div>
+</div>
+<div aria-labelledby="tab-mid" class="hist-panel hist-panel--text" hidden="" id="panel-mid" role="tabpanel" tabindex="0">
+<div>
+<span class="yr">the refurbishment</span>
+<h3>The transformation</h3>
+<p>Young Life refurbished the camp and repurposed it, to bring young people back to their Christian roots.</p>
+</div>
+</div>
+<div aria-labelledby="tab-now" class="hist-panel" hidden="" id="panel-now" role="tabpanel" tabindex="0">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--forest"></span><img alt="The camp grounds today, seen from above" data-img="histNew" decoding="async" loading="lazy"/></div>
+<div>
+<span class="yr">today</span>
+<h3>The camp today</h3>
+<p>Today thousands of young people meet Jesus at Pioneer Camp. It hosts groups from across Armenia, and guests during the summer and winter programmes.</p>
+<p><a class="link" href="#contact">Ask about visiting <span aria-hidden="true" class="arw">→</span></a></p>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================= WET GAMES ========================= -->
+<section class="section wet on-dark" id="wet-games">
+<div class="wrap wet-in">
+<div class="head-block reveal">
+<p class="eyebrow">The most anticipated day of summer</p>
+<h2>Water Games</h2>
+</div>
+<ul aria-hidden="true" class="wet-words reveal d1">
+<li>WATER <span class="dot">·</span></li>
+<li>LAUGHTER <span class="dot">·</span></li>
+<li>FRIENDSHIP</li>
+</ul>
+<div class="wet-copy story-grid">
+<p class="lead reveal">The wettest, loudest day of the year: water, laughter, and the whole camp on one field.</p>
+<div class="reveal d1">
+<p>Buckets, water balloons, a garden hose and a few paddling pools. The rules are simple: nobody stays dry, and nobody minds.</p>
+<p>When the game is over everyone gathers on the field for one photograph. This is one of the days people remember all year.</p>
+</div>
+</div>
+<div class="wet-wall">
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--water"></span>
+<img alt="A girl caught in a jet of water on the camp field" data-img="wetHose" decoding="async" loading="lazy"/></div>
+<figcaption>The hose reaches everybody</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--people"></span>
+<img alt="Young people splashing water beside a paddling pool" data-img="wetPool" decoding="async" loading="lazy"/></div>
+<figcaption>The pool is the most dangerous place to stand</figcaption>
+</figure>
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--forest"></span>
+<img alt="A soaked leader running across the field" data-img="wetRun" decoding="async" loading="lazy"/></div>
+<figcaption>Running away doesn't help</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--sun"></span>
+<img alt="A girl laughing at the edge of the pool" data-img="wetLaugh" decoding="async" loading="lazy"/></div>
+<figcaption>Laughing to the last drop</figcaption>
+</figure>
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--water"></span>
+<img alt="A leader sliding onto an inflatable orca in a foam-filled pool" data-img="wetFoamOrca" decoding="async" loading="lazy"/></div>
+<figcaption>Into the foam, head first</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--sun"></span>
+<img alt="A girl laughing as she drags an inflatable orca back across the grass" data-img="wetOrcaGirl" decoding="async" loading="lazy"/></div>
+<figcaption>Dragging it back for another go</figcaption>
+</figure>
+<figure class="reveal d2">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--people"></span>
+<img alt="A boy in swimming goggles and flippers walking across the field" data-img="wetFlippers" decoding="async" loading="lazy"/></div>
+<figcaption>Goggles and flippers, on dry grass</figcaption>
+</figure>
+</div>
+<div class="wet-foot">
+<a class="link" href="#gallery">See all the photos <span aria-hidden="true" class="arw">→</span></a>
+</div>
+</div>
+</section>
+<!-- ========================= COLOUR DAY ========================= -->
+<section class="section colour" id="colour-day">
+<div class="wrap">
+<div class="head-block reveal">
+<p class="eyebrow">Once every summer</p>
+<h2>Colour Day</h2>
+<p class="lead">Everyone starts the afternoon in a white shirt. Nobody finishes in one.</p>
+</div>
+<div class="colour-copy story-grid">
+<div class="reveal">
+<p>Powder paint by the bucket, shaving foam, a hosepipe and whatever the kitchen can spare. It runs for one afternoon and takes the rest of the evening to wash out.</p>
+<p>The mess is not really the point. The point is that after twenty minutes the quietest person on the field looks exactly like everybody else, and the photograph at the end has all of them in it.</p>
+</div>
+<ul aria-label="What the afternoon needs" class="colour-kit reveal d1">
+<li>A white shirt nobody loves</li>
+<li>Powder paint, by the bucket</li>
+<li>Shaving foam</li>
+<li>One hosepipe, running</li>
+</ul>
+</div>
+<div class="colour-set">
+<figure class="colour-tall reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--sun"></span>
+<img alt="A boy in a paint-covered shirt wearing a watermelon rind on his head" data-img="colourHelmet" decoding="async" loading="lazy"/></div>
+<figcaption>A watermelon rind makes a good helmet</figcaption>
+</figure>
+<figure class="colour-wide reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--forest"></span>
+<img alt="A leader throwing red powder paint from a tub across the camp lawn" data-img="colourThrow" decoding="async" loading="lazy"/></div>
+<figcaption>The bucket that starts it</figcaption>
+</figure>
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--ridge"></span>
+<img alt="Two girls with their arms around each other, covered in orange paint and water" data-img="colourPair" decoding="async" loading="lazy"/></div>
+<figcaption>Soaked, painted, still standing</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--people"></span>
+<img alt="A boy with shaving foam across his face, smiling at the camera" data-img="colourFoam" decoding="async" loading="lazy"/></div>
+<figcaption>Shaving foam, and no complaints</figcaption>
+</figure>
+<figure class="colour-tall reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--sun"></span>
+<img alt="A girl with green and red powder paint across her face, pushing her hair back" data-img="colourFace" decoding="async" loading="lazy"/></div>
+<figcaption>Green on one side, red on the other</figcaption>
+</figure>
+<figure class="colour-wide reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--ridge"></span>
+<img alt="Five girls leaning on each other, faces and shirts covered in paint" data-img="colourCrew" decoding="async" loading="lazy"/></div>
+<figcaption>Five of them, unrecognisable</figcaption>
+</figure>
+</div>
+</div>
+<figure class="colour-finale reveal">
+<div class="media"><span aria-hidden="true" class="scene scene--ridge"></span>
+<img alt="The whole group in paint-covered white shirts, gathered in front of the marquee with the mountains behind" data-img="colourGroup" decoding="async" loading="lazy"/></div>
+<figcaption><span class="wrap">Everyone, at the end of Colour Day</span></figcaption>
+</figure>
+</section>
+<!-- ========================= RELAYS & TEAM GAMES ========================= -->
+<section class="section games" id="games">
+<div class="wrap">
+<div class="head-block reveal">
+<p class="eyebrow">On the field</p>
+<h2>Relays &amp; Team Games</h2>
+<p class="lead">The part of the day when nobody remembers who came from where — all that matters is the team.</p>
+</div>
+<figure class="games-lead reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--people"></span>
+<img alt="Two girls running with a hoop around their waists" data-img="gameHoopRelay" decoding="async" loading="lazy"/></div>
+<figcaption>The hoop must not drop — everything else is a detail</figcaption>
+</figure>
+<div class="games-copy story-grid">
+<div class="reveal">
+<p>Every day brings a few contests on the field: a hoop relay, walking on wooden stilts, hand-offs, and games that simply do not work without a team.</p>
+<p>Who won matters for about five minutes. What stays is that somebody reached out a hand the moment you lost your balance.</p>
+</div>
+<ul aria-label="Rules of the day" class="games-rules reveal d1">
+<li>Team</li>
+<li>Speed</li>
+<li>Trust</li>
+<li>Plenty of laughing</li>
+</ul>
+</div>
+<div class="games-grid">
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--people"></span>
+<img alt="Two girls in orange bibs during the game" data-img="gameDuo" decoding="async" loading="lazy"/></div>
+<figcaption>The orange team, halfway through</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--forest"></span>
+<img alt="Boys running during a relay race" data-img="gameBoysRelay" decoding="async" loading="lazy"/></div>
+<figcaption>The reds are ahead, for now</figcaption>
+</figure>
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--ridge"></span>
+<img alt="The green team walking while holding each other's legs" data-img="gameLegs" decoding="async" loading="lazy"/></div>
+<figcaption>The green team learning to walk together</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--stone"></span>
+<img alt="Girls trying to walk on wooden stilts" data-img="gameStilts" decoding="async" loading="lazy"/></div>
+<figcaption>First steps on the stilts</figcaption>
+</figure>
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--forest"></span>
+<img alt="A leader holding out a hand to a girl on stilts" data-img="gameStiltsTeam" decoding="async" loading="lazy"/></div>
+<figcaption>There is always a hand held out</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--sun"></span>
+<img alt="Girls passing a hoop between them" data-img="gamePass" decoding="async" loading="lazy"/></div>
+<figcaption>The hand-off, without hands</figcaption>
+</figure>
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--forest"></span>
+<img alt="Two boys in green bibs running with a hoop between them" data-img="gameHoopBoys" decoding="async" loading="lazy"/></div>
+<figcaption>The green team, hoop still on</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--ridge"></span>
+<img alt="A whole team squeezed inside a single hoop" data-img="gameHoopRun" decoding="async" loading="lazy"/></div>
+<figcaption>The whole team inside one hoop</figcaption>
+</figure>
+</div>
+<div class="games-faces">
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--people"></span>
+<img alt="Portrait of a girl in an orange bib" data-img="gameFaceGirl" decoding="async" loading="lazy"/></div>
+<figcaption>After the game</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--forest"></span>
+<img alt="Portrait of a boy in a blue bib" data-img="gameFaceBoy" decoding="async" loading="lazy"/></div>
+<figcaption>Waiting for the evening programme</figcaption>
+</figure>
+<figure class="reveal d2">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--sun"></span>
+<img alt="A boy eating watermelon during the break" data-img="gameWatermelon" decoding="async" loading="lazy"/></div>
+<figcaption>A break, with watermelon</figcaption>
+</figure>
+</div>
+<p class="games-foot"><a class="link" href="#gallery">See all the photos <span aria-hidden="true" class="arw">→</span></a></p>
+</div>
+</section>
+<!-- ========================= CLUB NIGHTS ========================= -->
+<section class="section club on-dark" id="club">
+<div class="wrap club-in">
+<div class="head-block reveal">
+<p class="eyebrow">Every week, not only in summer</p>
+<h2>Club Nights</h2>
+<p class="lead">Camp is one week of the year. Club is the other fifty-one.</p>
+</div>
+<div class="club-copy story-grid">
+<div class="reveal">
+<p>A club night is loud on purpose. Songs, a game that makes very little sense, and someone on stage who was sitting in the back row two summers ago.</p>
+<p>Then the room goes quiet for ten minutes, somebody tells the truth about their week, and everyone walks home together.</p>
+</div>
+<ul aria-label="How an evening runs" class="club-run reveal d1">
+<li>Songs</li>
+<li>Games</li>
+<li>A story</li>
+<li>Ten quiet minutes</li>
+</ul>
+</div>
+<div class="club-strip">
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--fire"></span>
+<img alt="A crowd of young people with their hands raised, singing at a club night" data-img="clubHands" decoding="async" loading="lazy"/></div>
+<figcaption>Hands up, singing together</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--people"></span>
+<img alt="A leader and a teenager holding microphones on stage in front of a pink backdrop" data-img="clubMics" decoding="async" loading="lazy"/></div>
+<figcaption>A leader and a camper share the microphone</figcaption>
+</figure>
+<figure class="reveal d2">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--archive"></span>
+<img alt="A row of girls clapping and laughing under stage light" data-img="clubClapping" decoding="async" loading="lazy"/></div>
+<figcaption>The front row, mid-song</figcaption>
+</figure>
+<figure class="reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--fire"></span>
+<img alt="Three leaders singing into microphones with the words on a screen behind them" data-img="clubWorship" decoding="async" loading="lazy"/></div>
+<figcaption>Three voices and the words on the screen</figcaption>
+</figure>
+<figure class="reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--people"></span>
+<img alt="Four young people sitting on stage answering questions from two leaders" data-img="clubPanel" decoding="async" loading="lazy"/></div>
+<figcaption>Ten quiet minutes, and someone tells the truth</figcaption>
+</figure>
+<figure class="reveal d2">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--ridge"></span>
+<img alt="Girls in the audience laughing, one with both arms thrown out" data-img="clubCrowd" decoding="async" loading="lazy"/></div>
+<figcaption>Arms out, halfway through the song</figcaption>
+</figure>
+</div>
+<div class="club-foot">
+<a class="link" href="#gallery">See all the photos <span aria-hidden="true" class="arw">&#8594;</span></a>
+</div>
+</div>
+</section>
+<!-- ========================= PHOTO GALLERY ========================= -->
+<section class="section gallery" id="gallery">
+<div class="wrap">
+<div class="head-block reveal">
+<p class="eyebrow">Photo archive</p>
+<h2>Gallery</h2>
+<p class="lead">Camp, club nights, water games and relays. Tap a photo to see it larger.</p>
+</div>
+<div aria-label="Filter" class="gal-filters" role="group">
+<button aria-pressed="true" class="chip" data-filter="all" type="button">All</button>
+<button aria-pressed="false" class="chip" data-filter="camp" type="button">Pioneer Camp</button>
+<button aria-pressed="false" class="chip" data-filter="wet" type="button">Water Games</button>
+<button aria-pressed="false" class="chip" data-filter="colour" type="button">Colour Day</button>
+<button aria-pressed="false" class="chip" data-filter="games" type="button">Relays</button>
+<button aria-pressed="false" class="chip" data-filter="archive" type="button">Club nights</button>
+</div>
+<div class="masonry" id="masonry"></div>
+</div>
+</section>
+<!-- lightbox -->
+<div aria-label="Photo" aria-modal="true" class="lightbox" id="lightbox" role="dialog">
+<div class="lb-top">
+<button aria-label="Previous photo" class="lb-btn" id="lbPrev" type="button">‹</button>
+<button aria-label="Next photo" class="lb-btn" id="lbNext" type="button">›</button>
+<button aria-label="Close" class="lb-btn" id="lbClose" type="button">×</button>
+</div>
+<div class="lb-body">
+<figure class="lb-figure">
+<div class="media"><span aria-hidden="true" class="scene scene--forest"></span><img alt="" id="lbImg"/></div>
+<figcaption id="lbCap"></figcaption>
+</figure>
+</div>
+<p class="lb-count" id="lbCount"></p>
+</div>
+<!-- ========================= VIDEOS ========================= -->
+<section class="section videos on-dark" id="videos">
+<div class="wrap">
+<div class="head-block reveal">
+<p class="eyebrow">Filmed stories</p>
+<h2>Videos</h2>
+<p class="lead">A tour of the camp, the anniversary film, and days at Young Life Armenia.</p>
+</div>
+<!-- Both blocks below are filled by js/components/videos.js from the
+     YL_VIDEOS list in js/config.js. To add, remove or reorder a film,
+     edit that list — there is nothing to change here. -->
+<div id="video-featured"></div>
+<div class="video-grid" id="video-grid"></div>
+<noscript>
+<ul class="lead">
+<li><a class="link" href="https://drive.google.com/file/d/1UIITmogez_34RTUhL6gt_1oiKLxlRpRp/view">A tour of Pioneer Camp with Lee Ann</a></li>
+<li><a class="link" href="https://drive.google.com/file/d/1eWlC55DMVBWHReOEMnwGtr-Aqeaz4MS2/view">25 years of Young Life Armenia</a></li>
+<li><a class="link" href="https://drive.google.com/file/d/18rI61rxb4m6_wXK9v9lgo4OeU0xcqRfF/view">Young Life Armenia</a></li>
+</ul>
+</noscript>
+</div>
+</section>
+<!-- ========================= STORIES / BLOG ========================= -->
+<section class="section blog" id="blog">
+<div class="wrap">
+<div class="head-block reveal">
+<p class="eyebrow">Magazine</p>
+<h2>Stories</h2>
+<p class="lead">People, camps, ministry and news.</p>
+</div>
+<div class="posts">
+<article class="post reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--forest"></span><img alt="A soaked leader running across the field" data-img="blog1" decoding="async" loading="lazy"/></div>
+<p class="post-cat">Pioneer Camp</p>
+<h3>The first week of summer</h3>
+<p>How the season opened: new friendships, the first hike and a fire that lasted into the night.</p>
+</article>
+<article class="post reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--people"></span><img alt="Girls learning to walk on wooden stilts" data-img="blog2" decoding="async" loading="lazy"/></div>
+<p class="post-cat">Leaders</p>
+<h3>Why leadership starts with listening</h3>
+<p>Volunteer leaders on what it means to show up without judging.</p>
+</article>
+<article class="post reveal d2">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--archive"></span><img alt="The main camp building" data-img="blog3" decoding="async" loading="lazy"/></div>
+<p class="post-cat">Young Life Armenia</p>
+<h3>From the archive: photos of the first camp</h3>
+<p>Frames found in old albums, and the people who still remember those days.</p>
+</article>
+<article class="post reveal">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--fire"></span><img alt="Two girls covered in orange paint on Colour Day" data-img="blog4" decoding="async" loading="lazy"/></div>
+<p class="post-cat">Camper stories</p>
+<h3>“I didn't want to come at first”</h3>
+<p>A story about how one week changed a whole year.</p>
+</article>
+<article class="post reveal d1">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--ridge"></span><img alt="A crowd with their hands raised at a club night" data-img="blog5" decoding="async" loading="lazy"/></div>
+<p class="post-cat">Ministry</p>
+<h3>How a club works in one town</h3>
+<p>Weekly meetings, small groups and the trust built over a year.</p>
+</article>
+<article class="post reveal d2">
+<div class="media media--zoom"><span aria-hidden="true" class="scene scene--stone"></span><img alt="The camp grounds and paths from above" data-img="blog6" decoding="async" loading="lazy"/></div>
+<p class="post-cat">News</p>
+<h3>Getting the camp ready before the season</h3>
+<p>A volunteer week: paint, timber, the kitchen and a lot of coffee.</p>
+</article>
+</div>
+<p class="blog-note">Full stories are published on <a href="https://www.instagram.com/armeniayounglife" rel="noopener" target="_blank">Instagram</a> while this section is being built.</p>
+</div>
+</section>
+<!-- ========================= IMPACT ========================= -->
+<section class="section impact on-dark" id="impact">
+<div class="wrap">
+<div class="head-block reveal">
+<p class="eyebrow">In numbers</p>
+<h2>What these years have held</h2>
+</div>
+<div class="stats">
+<div class="stat reveal"><b data-count="9835">9,835</b><span>kids known by name</span></div>
+<div class="stat reveal d1"><b data-count="3938">3,938</b><span>kids to camp</span></div>
+<div class="stat reveal d2"><b data-count="543">543</b><span>kids to club weekly</span></div>
+<div class="stat reveal d3"><b data-count="309">309</b><span>kids to campaigners</span></div>
+<div class="stat reveal"><b data-count="256">256</b><span>volunteer leaders</span></div>
+</div>
+<p class="photo-cap" style="color:rgba(251,247,239,.6);margin-top:1.25rem">Figures as of mission year-end, May 2025.</p>
+</div>
+</section>
+<!-- ========================= TESTIMONIALS ========================= -->
+<section class="section voices" id="voices">
+<div class="wrap">
+<div class="head-block reveal">
+<p class="eyebrow">People</p>
+<h2>What supporters say</h2>
+</div>
+<div aria-live="polite" class="voice-track" id="voiceTrack">
+<figure class="voice active">
+<div class="media"><span aria-hidden="true" class="scene scene--stone"></span><img alt="Jerry and Nelda Baker smiling together, arms around each other" data-img="jerryNelda" decoding="async" loading="lazy"/></div>
+<div>
+<blockquote>Once you get to know someone personally like this, you fall in love with them and develop an urge to give. They are getting the gift, but we feel it is a gift to us.</blockquote>
+<figcaption class="who"><b>Jerry &amp; Nelda Baker</b><span>Young Life Armenia staff sponsors</span></figcaption>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================= GET INVOLVED ========================= -->
+<section class="section involved" id="involved">
+<div class="wrap">
+<div class="head-block reveal">
+<p class="eyebrow">Together</p>
+<h2>How to get involved</h2>
+<p class="lead">Three simple ways to be part of this story.</p>
+</div>
+<div class="ways">
+<article class="way way--support reveal">
+<div class="media"><span aria-hidden="true" class="scene scene--sun"></span><img alt="The whole camp gathered on the field" data-img="way1" decoding="async" loading="lazy"/></div>
+<div class="way-body">
+<h3>Support</h3>
+<p>Your gift pays for days at camp, the journey there, and the training of leaders.</p>
+<a class="btn btn--donate btn--lg js-donate" href="#">
+<span aria-hidden="true" class="heart">♥</span><span>DONATE</span>
+</a>
+</div>
+</article>
+<article class="way reveal d1">
+<div class="media"><span aria-hidden="true" class="scene scene--people"></span><img alt="A leader helping a girl on stilts" data-img="way2" decoding="async" loading="lazy"/></div>
+<div class="way-body">
+<h3>Serve</h3>
+<p>Become a volunteer leader, help prepare the camp, or join a club meeting.</p>
+<a class="btn btn--solid btn--lg" href="#contact">Write to us</a>
+</div>
+</article>
+<article class="way reveal d2">
+<div class="media"><span aria-hidden="true" class="scene scene--ridge"></span><img alt="Two leaders on stage at a club night" data-img="way3" decoding="async" loading="lazy"/></div>
+<div class="way-body">
+<h3>Share</h3>
+<p>Tell your friends, send this page on, or invite someone to the next meeting.</p>
+<a class="btn btn--outline btn--lg" href="#blog">Read the stories</a>
+</div>
+</article>
+</div>
+<div class="head-block reveal" style="margin-top:clamp(3rem,6vw,4.5rem)">
+<h3 style="font-size:var(--fs-h3)">What your gift does</h3>
+</div>
+<div class="gives">
+<article class="give reveal">
+<span class="amount">$25<small>per month</small></span>
+<div><h3>Sponsor a club</h3>
+<p>You help a leader establish a club in the area, covering rent, equipment and programme supplies.</p></div>
+</article>
+<article class="give reveal d1">
+<span class="amount">$150<small>per camper</small></span>
+<div><h3>Send a kid to camp</h3>
+<p>Every kid wants to experience the best week of their life, but not every family can afford the trip.</p></div>
+</article>
+<article class="give reveal d2">
+<span class="amount">$200<small>+ $25 · 3 years</small></span>
+<div><h3>Plant a tree, grow a life</h3>
+<p>Your gift plants a tree at Pioneer Camp and sends one teenager to camp, and monthly support walks with them in faith and leadership for three years.</p></div>
+</article>
+</div>
+<p class="cta-note" style="color:var(--muted);margin-top:1.25rem">Amounts are shown in US dollars, as in Young Life’s own materials.</p>
+<div class="head-block reveal" style="margin-top:clamp(3rem,6vw,4.5rem)">
+<h3 style="font-size:var(--fs-h3)">Ways that cost time, not money</h3>
+</div>
+<div class="gives gives--two">
+<article class="give give--time reveal">
+<span class="amount">1 hr<small>once a month</small></span>
+<div>
+<h3>Join our Action Team</h3>
+<p>Every second Tuesday, join a community of people who pray, hear ministry updates, and stand behind our leaders and students. Then take the story with you — invite a friend, speak at your church, host a coffee.</p>
+<p><a class="link" href="https://mea.younglife.org/action-team" target="_blank" rel="noopener">Learn about the Action Team <span class="arw" aria-hidden="true">→</span></a></p>
+</div>
+</article>
+<article class="give give--time reveal d1">
+<span class="amount">Visit<small>come &amp; see</small></span>
+<div>
+<h3>Come and see for yourself</h3>
+<p>Experience the mission firsthand. Travel with your church, your family, friends, or on your own. Meet the young people, hear stories of transformed lives, and see how the ministry works from the inside.</p>
+<p><a class="link" href="#contact">Ask about a visit <span class="arw" aria-hidden="true">→</span></a></p>
+</div>
+</article>
+</div>
+<div class="head-block reveal" style="margin-top:clamp(3rem,6vw,4.5rem)">
+<h3 style="font-size:var(--fs-h3)">Pray with us</h3>
+<p class="lead">This is what our team is praying for.</p>
+</div>
+<div class="prayers">
+<p class="prayer reveal">For peace in Armenia and God’s protection over its people.</p>
+<p class="prayer reveal d1">For our staff and volunteer leaders, to serve with wisdom, strength and joy.</p>
+<p class="prayer reveal d2">For continued growth, and for God to provide the leaders and resources to reach every young person.</p>
+</div>
+</div>
+</section>
+<!-- ========================= DONATION CTA ========================= -->
+<section class="section cta" id="donate">
+<div aria-hidden="true" class="media"><span class="scene scene--fire"></span><img alt="" data-img="cta" decoding="async" loading="lazy"/></div>
+<div aria-hidden="true" class="cta-shade"></div>
+<div class="wrap narrow">
+<p class="eyebrow reveal">Support</p>
+<h2 class="reveal d1">Be part of this story</h2>
+<p class="lead reveal d2">Your support helps create a place where young people can find friendship, hope and faith.</p>
+<p class="reveal d3">
+<a class="btn btn--donate btn--lg js-donate" href="#">
+<span aria-hidden="true" class="heart">♥</span><span>DONATE</span>
+</a>
+</p>
+<p class="cta-note">Donations are processed on the official external website.</p>
+</div>
+</section>
+<!-- ========================= CONTACT ========================= -->
+<section class="section contact" id="contact">
+<div class="wrap">
+<div class="head-block reveal">
+<p class="eyebrow">Contact</p>
+<h2>Write or call us</h2>
+<p class="lead">Want to join in, visit the camp, or simply ask a question? Write to us.</p>
+</div>
+<div class="contact-grid">
+<div class="reveal">
+<ul class="cinfo">
+<li>
+<span aria-hidden="true" class="ic"><svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span>
+<div><b>Address</b><span style="font-weight:700;font-size:var(--fs-lg)">Yerevan, Armenia</span></div>
+</li>
+<li>
+<span aria-hidden="true" class="ic"><svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"></path></svg></span>
+<div><b>Website</b><a href="https://armenia.younglife.org" rel="noopener" target="_blank">armenia.younglife.org</a></div>
+</li>
+</ul>
+<div class="partner">
+<h3>Supporting from abroad?</h3>
+<p>For partnership, giving and visit enquiries, contact <strong>Carrie Fraser</strong>, Armenia Development Coordinator.</p>
+<ul class="cinfo">
+<li>
+<span aria-hidden="true" class="ic"><svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="M3 7l9 6 9-6"></path></svg></span>
+<div><b>Email</b><a href="mailto:cfraser@sc.younglife.org">cfraser@sc.younglife.org</a></div>
+</li>
+<li>
+<span aria-hidden="true" class="ic"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 5c0 9 6 15 15 15l2-4-5-2-2 2a12 12 0 01-6-6l2-2-2-5z"></path></svg></span>
+<div><b>Phone</b><a href="tel:+17192294970">+1 (719) 229-4970</a></div>
+</li>
+</ul>
+</div>
+<div class="socials">
+<a class="social" href="https://www.instagram.com/armeniayounglife" rel="noopener" target="_blank">Instagram</a>
+</div>
+</div>
+<form class="reveal d1" id="contactForm" novalidate="">
+<div class="field">
+<label for="cname">Name</label>
+<input autocomplete="name" id="cname" name="name" required="" type="text"/>
+</div>
+<div class="field">
+<label for="cmail">Email</label>
+<input autocomplete="email" id="cmail" name="email" required="" type="email"/>
+</div>
+<div class="field">
+<label for="cmsg">Message</label>
+<textarea id="cmsg" name="message" required=""></textarea>
+</div>
+<button class="btn btn--solid btn--lg btn--block" type="submit">Send</button>
+<p class="form-note">We reply within a few working days.</p>
+<p class="form-ok" hidden="" id="formOk" role="status">Thank you. Your message has been received. (Prototype — the form is not connected to a server yet.)</p>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- ========================= FOOTER ========================= -->
+<footer class="footer">
+<div class="wrap">
+<div aria-hidden="true" class="rule" style="margin-bottom:3rem"></div>
+<div class="foot-grid">
+<div class="foot-brand">
+<a class="brand" href="#top">
+<span aria-hidden="true" class="brand-mark">YL</span>
+<span class="brand-name"><b>Young Life</b><span>Armenia</span></span>
+</a>
+<p class="foot-mission">Our mission is introducing adolescents to Jesus Christ and helping them grow in their faith.</p>
+
+</div>
+<nav aria-label="Footer menu" class="foot-col">
+<h3>Site</h3>
+<a href="#story">Our Story</a>
+<a href="#camp">Pioneer Camp</a>
+<a href="#years">25 Years</a>
+<a href="#gallery">Gallery</a>
+</nav>
+<nav aria-label="Footer menu" class="foot-col">
+<h3>More</h3>
+<a href="#videos">Videos</a>
+<a href="#blog">Stories</a>
+<a href="#involved">Get involved</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="foot-col">
+<h3>Contact</h3>
+<a href="https://armenia.younglife.org" rel="noopener" target="_blank">armenia.younglife.org</a>
+<a href="https://www.instagram.com/armeniayounglife" rel="noopener" target="_blank">Instagram</a>
+<span>Yerevan, Armenia</span>
+</div>
+</div>
+<div class="foot-bottom">
+<span>© <span id="year">2026</span> Young Life <span>Armenia</span></span>
+<span>All rights reserved.</span>
+</div>
+</div>
+</footer>
+
+<!-- Load order is the dependency graph: config and copy, then core,
+     then components, then main.js boots. All deferred, none blocking. -->
+
+
+
+
+<script src="app.js?v=21" defer></script>
+</body>
+</html>

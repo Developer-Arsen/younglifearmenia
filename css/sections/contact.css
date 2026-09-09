@@ -1,0 +1,33 @@
+/* Contact details and social links. */
+.contact{background:var(--cream-2)}
+.contact-grid{display:grid;gap:2.5rem;margin-top:2.5rem}
+.cinfo li{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.cinfo .ic{width:44px;height:44px;flex:none;border-radius:12px;background:var(--brand-800);color:var(--green);display:grid;place-items:center}
+.cinfo b{display:block;font-size:var(--fs-xs);font-family:var(--font-label);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.cinfo a{
+  /* A phone number is one of the most likely things an older visitor will
+     tap, so it gets a full-size target rather than bare text height. */
+  display:inline-flex;align-items:center;min-height:44px;
+  font-weight:700;text-decoration:none;font-size:var(--fs-lg);color:var(--brand-700);
+  overflow-wrap:anywhere;
+}
+.contact-grid > *,.story-grid > *,.foot-grid > *{min-width:0}
+.foot-col a{overflow-wrap:anywhere}
+@media (max-width:420px){ .cinfo a{font-size:var(--fs-base)} }
+.cinfo a:hover{color:var(--accent)}
+.socials{display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap}
+.social{
+  min-height:var(--tap);display:inline-flex;align-items:center;gap:.6rem;
+  padding:0 1.25rem;border-radius:var(--r-pill);border:2px solid var(--line);
+  text-decoration:none;font-weight:700;background:var(--cream);
+}
+.social:hover{border-color:var(--brand-800);background:var(--brand-800);color:var(--cream)}
+
+/* Supporters abroad have a different point of contact from a local
+   family, so they get their own block rather than a fourth list item. */
+.partner{
+  margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--line);
+}
+.partner h3{font-size:var(--fs-lg);margin-bottom:.4rem}
+.partner > p{color:var(--muted);font-size:var(--fs-sm);margin-bottom:.5rem}
+.partner .cinfo a{font-size:var(--fs-base)}

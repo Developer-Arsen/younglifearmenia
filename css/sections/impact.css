@@ -1,0 +1,14 @@
+/* Impact: statistics band. */
+.impact{background:var(--brand-800);color:var(--cream)}
+.stats{display:grid;gap:1px;margin-top:2.5rem;background:var(--line-dark);border:1px solid var(--line-dark);border-radius:var(--r-md);overflow:hidden}
+.stat{background:var(--brand-800);padding:2rem 1.5rem;text-align:center}
+.stat b{
+  display:block;font-size:clamp(3rem,9vw,4.5rem);line-height:1;font-weight:800;
+  letter-spacing:-.04em;color:var(--green);
+}
+.stat span{display:block;margin-top:.6rem;font-weight:700;font-size:var(--fs-sm)}
+.stat em{
+  display:block;font-family:var(--font-label);font-style:normal;font-size:.8rem;
+  color:rgba(251,247,239,.55);margin-top:.35rem;letter-spacing:.06em;
+}
+.stat.pending b{color:rgba(251,247,239,.5)}

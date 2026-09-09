@@ -1,0 +1,17 @@
+/* Footer and the persistent mobile donate bar. */
+.footer{background:var(--brand-900);color:var(--cream);padding-block:clamp(3rem,6vw,5rem) 8rem}
+.foot-grid{display:grid;gap:2.5rem}
+.foot-brand .brand{color:var(--cream);margin:0 0 1.25rem}
+.foot-mission{color:rgba(251,247,239,.72);max-width:38ch;font-size:var(--fs-sm)}
+.foot-col h3{font-family:var(--font-label);font-size:var(--fs-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:500;margin-bottom:1rem}
+.foot-col a{display:flex;align-items:center;min-height:48px;text-decoration:none;color:rgba(251,247,239,.85);font-weight:600}
+.foot-col a:hover{color:var(--green)}
+.foot-col .btn--donate{padding:.9rem 1.1rem;font-size:var(--fs-sm);white-space:nowrap;min-height:60px}
+.foot-bottom{
+  margin-top:3rem;padding-top:1.75rem;border-top:1px solid var(--line-dark);
+  display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;
+  color:rgba(251,247,239,.6);font-size:var(--fs-xs);font-family:var(--font-label);
+}
+
+
+

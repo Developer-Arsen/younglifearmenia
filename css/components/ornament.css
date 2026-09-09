@@ -1,0 +1,13 @@
+/* The khachkar-derived interlace rule used between sections.
+   The trail is a dashed path with stations — it threads Our Story, the 25 years and the camp history, because those three sections are one continuous walk. The ornament is a khachkar-derived interlace used only as a section rule. */
+.rule{
+  height:18px;width:100%;
+  background-repeat:repeat-x;background-position:center;
+  background-size:auto 18px;
+  opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='18' viewBox='0 0 72 18'%3E%3Cg fill='none' stroke='%2305334C' stroke-width='1.6'%3E%3Cpath d='M0 9c9 0 9-8 18-8s9 8 18 8 9-8 18-8 9 8 18 8'/%3E%3Cpath d='M0 9c9 0 9 8 18 8s9-8 18-8 9 8 18 8 9-8 18-8'/%3E%3C/g%3E%3C/svg%3E");
+}
+.on-dark .rule,.footer .rule{
+  opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='18' viewBox='0 0 72 18'%3E%3Cg fill='none' stroke='%23A4BD52' stroke-width='1.6'%3E%3Cpath d='M0 9c9 0 9-8 18-8s9 8 18 8 9-8 18-8 9 8 18 8'/%3E%3Cpath d='M0 9c9 0 9 8 18 8s9-8 18-8 9 8 18 8 9-8 18-8'/%3E%3C/g%3E%3C/svg%3E");
+}

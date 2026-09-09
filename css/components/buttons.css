@@ -1,0 +1,39 @@
+/* Buttons and arrow links. Nothing interactive is shorter than --tap.
+   Big, square-shouldered pills. Nothing below 56px tall. */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  min-height:var(--tap);padding:.9rem 1.9rem;
+  border-radius:var(--r-pill);border:2px solid transparent;
+  font-weight:800;font-size:var(--fs-sm);letter-spacing:.01em;
+  text-decoration:none;cursor:pointer;text-align:center;
+  transition:transform .16s ease,background-color .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+/* Donate is the brand green with navy type (7.46:1). Pioneer Camp uses
+   white-on-green for the same action, but white on this green is 1.97:1,
+   so the navy keeps the brand pairing and stays readable. */
+.btn--donate{background:var(--green);color:var(--brand-900);box-shadow:0 6px 18px rgba(3,38,56,.22)}
+.btn--donate:hover{background:var(--green-strong);box-shadow:0 10px 26px rgba(3,38,56,.3)}
+.btn--solid{background:var(--brand-800);color:var(--cream)}
+.btn--solid:hover{background:var(--brand-700)}
+.btn--outline{border-color:currentColor;color:var(--brand-800)}
+.btn--outline:hover{background:var(--brand-800);color:var(--cream);border-color:var(--brand-800)}
+.on-dark .btn--outline,.hero .btn--outline,.cta .btn--outline{color:var(--cream)}
+.on-dark .btn--outline:hover,.hero .btn--outline:hover,.cta .btn--outline:hover{background:var(--cream);color:var(--brand-900);border-color:var(--cream)}
+.btn--light{background:var(--cream);color:var(--brand-900)}
+.btn--light:hover{background:#fff}
+.btn--lg{min-height:64px;padding:1.05rem 2.4rem;font-size:var(--fs-base)}
+.btn--block{width:100%}
+.btn .heart{font-size:1.1em;line-height:1}
+
+/* text link with arrow */
+.link{
+  display:inline-flex;align-items:center;gap:.55rem;min-height:44px;
+  font-weight:800;text-decoration:none;color:var(--brand-700);
+  border-bottom:2px solid var(--sand);
+}
+.link:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.on-dark .link{color:var(--green);border-bottom-color:rgba(164,189,82,.4)}
+.link .arw{transition:transform .18s ease}
+.link:hover .arw{transform:translateX(4px)}

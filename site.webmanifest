@@ -1,0 +1,12 @@
+{
+  "name": "Young Life Հայաստան",
+  "short_name": "Young Life",
+  "lang": "hy",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FBF7EF",
+  "theme_color": "#05334C",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

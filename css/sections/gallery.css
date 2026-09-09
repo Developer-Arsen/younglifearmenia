@@ -1,0 +1,54 @@
+/* Photo gallery: filter chips + a uniform photo grid.
+
+   Every tile is the same 4:3 landscape frame and nothing stretches to match
+   a neighbour, so a photo can never be cropped into a tall strip. This
+   replaced a `column-count` masonry whose per-photo aspect classes
+   (.g-1 … .g-5) fought with the grid and produced exactly that. Those
+   classes still come out of js/config.js; they are deliberately neutralised
+   at the bottom of this file rather than removed, so config.js stays valid.
+
+   To go back to a staggered masonry: set .masonry to
+   `column-count:3; column-gap:1rem`, give `.masonry figure`
+   `break-inside:avoid`, and drop the aspect-ratio from `.gal-btn .media`
+   so each photo keeps its own proportions. Do not mix the two. */
+.gallery{background:var(--cream-2)}
+.gal-filters{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.75rem}
+.chip{
+  min-height:48px;padding:.5rem 1.25rem;border-radius:var(--r-pill);
+  border:2px solid var(--line);background:var(--cream);cursor:pointer;
+  font-weight:700;font-size:var(--fs-sm);
+}
+.chip[aria-pressed="true"]{background:var(--brand-800);color:var(--cream);border-color:var(--brand-800)}
+
+/* auto-fill handles 1 -> 4 columns on its own; no breakpoints needed.
+   240px steps it 1 -> 2 -> 3 -> 4 columns at roughly 320 / 600 / 900 / 1280;
+     min() keeps a single tile from overflowing a 320px phone. */
+.masonry{
+  margin-top:2rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));
+  gap:1rem;
+  align-items:start;
+}
+.masonry figure{margin:0;position:relative;height:auto}
+.masonry figure[hidden]{display:none}
+.gal-btn{
+  display:block;width:100%;height:auto;padding:0;border:0;background:none;cursor:pointer;
+  border-radius:var(--r-md);overflow:hidden;position:relative;
+}
+.gal-btn .media{border-radius:var(--r-md);aspect-ratio:4/3;height:auto}
+.masonry figcaption{
+  pointer-events:none;
+  position:absolute;left:0;right:0;bottom:0;z-index:3;
+  padding:1.5rem 1rem .9rem;text-align:left;
+  font-size:var(--fs-xs);font-weight:700;color:#fff;
+  background:linear-gradient(180deg,transparent,rgba(3,38,56,.8));
+  border-radius:0 0 var(--r-md) var(--r-md);
+}
+.masonry .tag{
+  font-family:var(--font-label);display:block;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-size:.75rem;
+  margin-bottom:.2rem;
+}
+/* The per-photo ratios from config.js. One frame for all of them here. */
+.masonry .g-1,.masonry .g-2,.masonry .g-3,.masonry .g-4,.masonry .g-5{aspect-ratio:4/3}

@@ -1,0 +1,50 @@
+/* Relays & team games.
+   These photographs are all landscape, so this section is built the
+   opposite way to Wet Games: one wide lead image, then a grid of
+   horizontal frames, with the two portraits set as a quieter coda. */
+
+.games{background:var(--cream-2)}
+
+.games-lead{margin-top:clamp(2rem,4vw,3rem)}
+.games-lead .media{aspect-ratio:16/10;border-radius:var(--r-lg)}
+.games-lead figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:var(--muted);margin-top:.7rem;
+}
+
+.games-copy{display:grid;gap:1.5rem;margin-top:clamp(2rem,4vw,3rem)}
+.games-copy p{margin:0;color:var(--muted)}
+.games-copy p + p{margin-top:1.1em}
+
+/* three short rules of the day, set as label-style chips */
+.games-rules{display:flex;flex-wrap:wrap;gap:.6rem;margin:0;padding:0}
+.games-rules li{
+  font-family:var(--font-label);font-size:var(--fs-xs);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--brand-800);
+  border:2px solid var(--sand);border-radius:var(--r-pill);
+  padding:.55rem 1.1rem;background:var(--cream);
+}
+
+.games-grid{
+  display:grid;gap:1rem;margin-top:clamp(2.5rem,5vw,4rem);
+  grid-template-columns:minmax(0,1fr);
+}
+.games-grid figure{margin:0}
+.games-grid .media{aspect-ratio:3/2;border-radius:var(--r-md)}
+.games-grid figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:var(--muted);margin-top:.55rem;line-height:1.45;
+}
+
+/* the two portraits + the watermelon: the quiet minute after the whistle */
+.games-faces{
+  display:grid;gap:1rem;margin-top:1rem;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.games-faces figure{margin:0}
+.games-faces .media{aspect-ratio:4/5;border-radius:var(--r-md)}
+.games-faces figcaption{
+  font-family:var(--font-label);font-size:var(--fs-xs);
+  color:var(--muted);margin-top:.55rem;
+}
+.games-foot{margin-top:clamp(2rem,4vw,3rem)}
