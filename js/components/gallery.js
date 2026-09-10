@@ -1,8 +1,15 @@
 /* ============================================================
    Photo gallery.
-   Builds the masonry from YL_GALLERY (config.js) and filters it
-   by category. Owns the list of currently visible photos; the
-   lightbox reads that list so arrow keys only walk the filter.
+   Builds the grid from YL_GALLERY (config.js) and filters it by
+   category. Owns the list of currently visible photos; the lightbox
+   reads that list so arrow keys only walk the current filter.
+
+   There is deliberately no "All" chip. All fifty-odd photographs at
+   once made the section an endless scroll; one category at a time is
+   three or four rows. The chips are built from the categories that
+   actually appear in YL_GALLERY, in the order GALLERY_LABELS lists
+   them, so adding a category to the config cannot leave the page
+   without a chip for it.
    ============================================================ */
 window.YL = window.YL || {};
 
@@ -10,6 +17,7 @@ YL.gallery = (function () {
   "use strict";
 
   let grid;
+  let chipHost;
   let visible = [];   // indices into YL_GALLERY, in display order
 
   function cardHtml(item, index) {
@@ -41,11 +49,37 @@ YL.gallery = (function () {
     YL.images.wireAll(grid);
   }
 
+  function categories() {
+    const present = new Set(YL_GALLERY.map(item => item.cat));
+    return Object.keys(GALLERY_LABELS).filter(cat => present.has(cat));
+  }
+
+  function buildChips(list, current) {
+    chipHost.innerHTML = "";
+
+    list.forEach(cat => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "chip";
+      chip.setAttribute("data-filter", cat);
+      chip.setAttribute("aria-pressed", String(cat === current));
+      chip.textContent = GALLERY_LABELS[cat];
+
+      chip.addEventListener("click", () => {
+        YL.dom.$$(".chip", chipHost).forEach(c => c.setAttribute("aria-pressed", "false"));
+        chip.setAttribute("aria-pressed", "true");
+        filter(cat);
+      });
+
+      chipHost.appendChild(chip);
+    });
+  }
+
   function filter(category) {
     visible = [];
 
     YL.dom.$$("figure", grid).forEach(figure => {
-      const shown = category === "all" || figure.getAttribute("data-cat") === category;
+      const shown = figure.getAttribute("data-cat") === category;
       figure.hidden = !shown;
       if (shown) visible.push(parseInt(figure.getAttribute("data-index"), 10));
     });
@@ -53,18 +87,15 @@ YL.gallery = (function () {
 
   function init() {
     grid = YL.dom.$("#masonry");
-    if (!grid) return;
+    chipHost = YL.dom.$("#gal-filters");
+    if (!grid || !chipHost) return;
+
+    const list = categories();
+    if (!list.length) return;
 
     build();
-    filter("all");
-
-    YL.dom.$$(".chip").forEach(chip => {
-      chip.addEventListener("click", () => {
-        YL.dom.$$(".chip").forEach(c => c.setAttribute("aria-pressed", "false"));
-        chip.setAttribute("aria-pressed", "true");
-        filter(chip.getAttribute("data-filter"));
-      });
-    });
+    buildChips(list, list[0]);
+    filter(list[0]);
 
     grid.addEventListener("click", e => {
       const button = e.target.closest("[data-open]");

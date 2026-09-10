@@ -166,11 +166,10 @@ const YL_IMAGES = {
    ------------------------------------------------------------ */
 
 /* Where `file:` videos are served from. Keep the trailing slash.
-     "videos/"                        -> this repo (deploy will fail
-                                         on Pages for anything big)
-     "https://video.yoursite.org/"     -> an R2 bucket on your own
-                                         subdomain. THE GOAL. */
-const VIDEO_DIR = "videos/";
+   Currently the media subdomain, where the three films are hosted.
+   "videos/" would serve them from this repo instead, which a
+   Cloudflare Pages deploy rejects for anything over 25 MiB. */
+const VIDEO_DIR = "https://media.younglifearmenia.com/videos/";
 
 /* Only for `stream:`. Copy the customer code out of the embed URL
    Cloudflare shows on the Stream dashboard — it looks like
@@ -186,17 +185,9 @@ const VIDEO_FORMATS = [
   { ext:"mov",  type:"" }
 ];
 
-/* ---------------------------------------------------------------
-   !! CHECK THIS MAPPING !!
-   The three Drive links arrived without saying which film was
-   which, so they are matched below in the order they were sent.
-   Open each link, see which film it is, and if two are swapped
-   move the `drive` string — nothing else changes.
-   --------------------------------------------------------------- */
 const YL_VIDEOS = [
   {
-    drive:  "1UIITmogez_34RTUhL6gt_1oiKLxlRpRp",
-    /* On R2 instead:  file: "CampTourWithLeeAnn",  */
+    file:   "CampTourWithLeeAnn",
     title:  "A tour of Pioneer Camp with Lee Ann",
     blurb:  "A walk through the camp — the buildings, the grounds and what happens in them.",
     poster: "campHero",
@@ -205,8 +196,7 @@ const YL_VIDEOS = [
     featured: true
   },
   {
-    drive:  "1eWlC55DMVBWHReOEMnwGtr-Aqeaz4MS2",
-    /* On R2 instead:  file: "YoungLife25thbirthdayFullHD",  */
+    file:   "YoungLife25thbirthdayFullHD",
     title:  "25 years of Young Life Armenia",
     blurb:  "The anniversary film: archive footage and today's camp, twenty-five years side by side.",
     poster: "arch3",
@@ -215,8 +205,7 @@ const YL_VIDEOS = [
     years:  true
   },
   {
-    drive:  "18rI61rxb4m6_wXK9v9lgo4OeU0xcqRfF",
-    /* On R2 instead:  file: "YoungLife2",  */
+    file:   "YoungLife2",
     /* TODO: rename this once someone confirms what the film is. */
     title:  "Young Life Armenia",
     blurb:  "<span class=\"ph\">A short description of this film</span>",
@@ -227,10 +216,11 @@ const YL_VIDEOS = [
 ];
 
 /* Filter labels shown on each gallery card. */
+/* Also the chip order in the gallery, left to right. The first one
+   is what the section opens on, so keep the camp at the front. */
 const GALLERY_LABELS = {
-  camp:"Pioneer Camp", archive:"Club nights", wet:"Water Games",
-  colour:"Colour Day", games:"Relays",
-  mountains:"In the mountains", sport:"Sport"
+  camp:"Pioneer Camp", mountains:"In the mountains", archive:"Club nights",
+  wet:"Water Games", colour:"Colour Day", games:"Relays", sport:"Sport"
 };
 
 /* Gallery contents. Read by js/components/gallery.js.

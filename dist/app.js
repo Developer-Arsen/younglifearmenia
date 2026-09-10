@@ -168,11 +168,10 @@ const YL_IMAGES = {
    ------------------------------------------------------------ */
 
 /* Where `file:` videos are served from. Keep the trailing slash.
-     "videos/"                        -> this repo (deploy will fail
-                                         on Pages for anything big)
-     "https://video.yoursite.org/"     -> an R2 bucket on your own
-                                         subdomain. THE GOAL. */
-const VIDEO_DIR = "videos/";
+   Currently the media subdomain, where the three films are hosted.
+   "videos/" would serve them from this repo instead, which a
+   Cloudflare Pages deploy rejects for anything over 25 MiB. */
+const VIDEO_DIR = "https://media.younglifearmenia.com/videos/";
 
 /* Only for `stream:`. Copy the customer code out of the embed URL
    Cloudflare shows on the Stream dashboard — it looks like
@@ -188,17 +187,9 @@ const VIDEO_FORMATS = [
   { ext:"mov",  type:"" }
 ];
 
-/* ---------------------------------------------------------------
-   !! CHECK THIS MAPPING !!
-   The three Drive links arrived without saying which film was
-   which, so they are matched below in the order they were sent.
-   Open each link, see which film it is, and if two are swapped
-   move the `drive` string — nothing else changes.
-   --------------------------------------------------------------- */
 const YL_VIDEOS = [
   {
-    drive:  "1UIITmogez_34RTUhL6gt_1oiKLxlRpRp",
-    /* On R2 instead:  file: "CampTourWithLeeAnn",  */
+    file:   "CampTourWithLeeAnn",
     title:  "A tour of Pioneer Camp with Lee Ann",
     blurb:  "A walk through the camp — the buildings, the grounds and what happens in them.",
     poster: "campHero",
@@ -207,8 +198,7 @@ const YL_VIDEOS = [
     featured: true
   },
   {
-    drive:  "1eWlC55DMVBWHReOEMnwGtr-Aqeaz4MS2",
-    /* On R2 instead:  file: "YoungLife25thbirthdayFullHD",  */
+    file:   "YoungLife25thbirthdayFullHD",
     title:  "25 years of Young Life Armenia",
     blurb:  "The anniversary film: archive footage and today's camp, twenty-five years side by side.",
     poster: "arch3",
@@ -217,8 +207,7 @@ const YL_VIDEOS = [
     years:  true
   },
   {
-    drive:  "18rI61rxb4m6_wXK9v9lgo4OeU0xcqRfF",
-    /* On R2 instead:  file: "YoungLife2",  */
+    file:   "YoungLife2",
     /* TODO: rename this once someone confirms what the film is. */
     title:  "Young Life Armenia",
     blurb:  "<span class=\"ph\">A short description of this film</span>",
@@ -229,10 +218,11 @@ const YL_VIDEOS = [
 ];
 
 /* Filter labels shown on each gallery card. */
+/* Also the chip order in the gallery, left to right. The first one
+   is what the section opens on, so keep the camp at the front. */
 const GALLERY_LABELS = {
-  camp:"Pioneer Camp", archive:"Club nights", wet:"Water Games",
-  colour:"Colour Day", games:"Relays",
-  mountains:"In the mountains", sport:"Sport"
+  camp:"Pioneer Camp", mountains:"In the mountains", archive:"Club nights",
+  wet:"Water Games", colour:"Colour Day", games:"Relays", sport:"Sport"
 };
 
 /* Gallery contents. Read by js/components/gallery.js.
@@ -594,9 +584,16 @@ YL.campHistory = (function () {
 /* ---- js/components/gallery.js ---- */
 /* ============================================================
    Photo gallery.
-   Builds the masonry from YL_GALLERY (config.js) and filters it
-   by category. Owns the list of currently visible photos; the
-   lightbox reads that list so arrow keys only walk the filter.
+   Builds the grid from YL_GALLERY (config.js) and filters it by
+   category. Owns the list of currently visible photos; the lightbox
+   reads that list so arrow keys only walk the current filter.
+
+   There is deliberately no "All" chip. All fifty-odd photographs at
+   once made the section an endless scroll; one category at a time is
+   three or four rows. The chips are built from the categories that
+   actually appear in YL_GALLERY, in the order GALLERY_LABELS lists
+   them, so adding a category to the config cannot leave the page
+   without a chip for it.
    ============================================================ */
 window.YL = window.YL || {};
 
@@ -604,6 +601,7 @@ YL.gallery = (function () {
   "use strict";
 
   let grid;
+  let chipHost;
   let visible = [];   // indices into YL_GALLERY, in display order
 
   function cardHtml(item, index) {
@@ -635,11 +633,37 @@ YL.gallery = (function () {
     YL.images.wireAll(grid);
   }
 
+  function categories() {
+    const present = new Set(YL_GALLERY.map(item => item.cat));
+    return Object.keys(GALLERY_LABELS).filter(cat => present.has(cat));
+  }
+
+  function buildChips(list, current) {
+    chipHost.innerHTML = "";
+
+    list.forEach(cat => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "chip";
+      chip.setAttribute("data-filter", cat);
+      chip.setAttribute("aria-pressed", String(cat === current));
+      chip.textContent = GALLERY_LABELS[cat];
+
+      chip.addEventListener("click", () => {
+        YL.dom.$$(".chip", chipHost).forEach(c => c.setAttribute("aria-pressed", "false"));
+        chip.setAttribute("aria-pressed", "true");
+        filter(cat);
+      });
+
+      chipHost.appendChild(chip);
+    });
+  }
+
   function filter(category) {
     visible = [];
 
     YL.dom.$$("figure", grid).forEach(figure => {
-      const shown = category === "all" || figure.getAttribute("data-cat") === category;
+      const shown = figure.getAttribute("data-cat") === category;
       figure.hidden = !shown;
       if (shown) visible.push(parseInt(figure.getAttribute("data-index"), 10));
     });
@@ -647,18 +671,15 @@ YL.gallery = (function () {
 
   function init() {
     grid = YL.dom.$("#masonry");
-    if (!grid) return;
+    chipHost = YL.dom.$("#gal-filters");
+    if (!grid || !chipHost) return;
+
+    const list = categories();
+    if (!list.length) return;
 
     build();
-    filter("all");
-
-    YL.dom.$$(".chip").forEach(chip => {
-      chip.addEventListener("click", () => {
-        YL.dom.$$(".chip").forEach(c => c.setAttribute("aria-pressed", "false"));
-        chip.setAttribute("aria-pressed", "true");
-        filter(chip.getAttribute("data-filter"));
-      });
-    });
+    buildChips(list, list[0]);
+    filter(list[0]);
 
     grid.addEventListener("click", e => {
       const button = e.target.closest("[data-open]");

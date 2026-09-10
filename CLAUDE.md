@@ -119,7 +119,7 @@ sed -i 's/?v=20/?v=21/g' index.html    # then ./build.sh
 loaded the site on `localhost:8000` will happily reuse old files and show you a
 stale, sometimes broken page. The version parameter makes that impossible.
 `build.sh` carries the same number onto `dist/styles.css` and `dist/app.js`.
-Current version: **21**.
+Current version: **22**.
 
 ## Two safety nets, do not remove
 
@@ -172,16 +172,9 @@ Everything the Young Life Armenia team has to supply:
 - A high-resolution original of the Water Games group shot. The copy supplied
   is 724px wide, so it spans two columns rather than four (see the note in
   `css/responsive.css`). Widen it once a larger file arrives.
-- **Move the three films off Google Drive.** They cannot live in this
-  repo — Pages rejects any file over 25 MiB — so they are embedded from
-  Drive, which is rate-limited and breaks silently if a sharing setting
-  changes. `videos/README.md` has the step-by-step move to a Cloudflare
-  R2 bucket, which is free at this size and needs two lines changed in
-  `js/config.js`. Until then, confirm all three are shared "Anyone with
-  the link → Viewer", tested in a private window.
-- **Confirm which Drive link is which film.** They arrived unlabelled and
-  are matched in `YL_VIDEOS` in the order they were sent. The middle one
-  matters most: it is what plays in the 25 Years section.
+- Confirm the mission-year figures. The "In numbers" block is headed as if
+  it covers all twenty-five years, but the footnote dates it to mission
+  year-end May 2025. One of the two is wrong.
 - The real domain (`example.org` in `index.html`, `robots.txt`, `sitemap.xml`)
 - Every value marked with `class="ph"`: founding dates, phone, email,
   testimonial names, article dates
