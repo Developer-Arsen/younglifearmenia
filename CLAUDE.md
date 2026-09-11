@@ -119,7 +119,7 @@ sed -i 's/?v=20/?v=21/g' index.html    # then ./build.sh
 loaded the site on `localhost:8000` will happily reuse old files and show you a
 stale, sometimes broken page. The version parameter makes that impossible.
 `build.sh` carries the same number onto `dist/styles.css` and `dist/app.js`.
-Current version: **25**.
+Current version: **26**.
 
 ## Two safety nets, do not remove
 
