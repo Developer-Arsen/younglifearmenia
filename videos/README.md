@@ -1,85 +1,53 @@
 ---
 name: videos
-description: The films are served from media.younglifearmenia.com, not this folder. How to change or add one.
+description: Videos are protected via a Cloudflare Pages Function that streams from a private R2 bucket. This folder is empty.
 ---
 
-# Videos
+# Videos — Protected Streaming
 
-**This folder is empty on purpose.** The films are far too big to ship with
-the site — Cloudflare Pages refuses any single file over **25 MiB**, GitHub
-over **100 MB** — so they are served from the media subdomain and embedded
-on demand:
+**This folder is empty on purpose.** The three films are hosted on a private Cloudflare R2 bucket and streamed through a Pages Function at `/video/<id>`, which validates requests and controls access.
 
-    https://media.younglifearmenia.com/videos/CampTourWithLeeAnn.mp4
-    https://media.younglifearmenia.com/videos/YoungLife25thbirthdayFullHD.mp4
-    https://media.younglifearmenia.com/videos/YoungLife-2-New.mp4
+## How it works
 
-Nothing is requested until a visitor presses play. Until then each slot
-shows a poster photograph from `images/`, like the rest of the page.
+1. **Pages Function** (`functions/video/[[path]].js`) intercepts `/video/<id>` requests
+2. **Whitelist check** — only these three video IDs are allowed:
+   - `camp-tour` → CampTourWithLeeAnn.mp4
+   - `25-years` → YoungLife25thbirthdayFullHD.mp4
+   - `younglife-2` → YoungLife-2-New.mp4
+3. **R2 fetch** — function retrieves the file from the private bucket
+4. **Stream** — returns the video with proper headers (Accept-Ranges, Cache-Control, etc.)
 
-## Where each film appears
+A visitor can only access videos through the website. The R2 bucket itself is never publicly accessible.
 
-| Film | Appears |
-|---|---|
-| A tour of Pioneer Camp with Lee Ann | Videos section — the large player at the top |
-| 25 years of Young Life Armenia | **25 Years in Armenia** section *and* Videos |
-| Young Life Armenia | Videos |
+## The mapping
 
-## Adding or replacing a film
+| Video ID | R2 key | Page |
+|---|---|---|
+| `camp-tour` | `videos/CampTourWithLeeAnn.mp4` | Videos section (large player) |
+| `25-years` | `videos/YoungLife25thbirthdayFullHD.mp4` | 25 Years section + Videos |
+| `younglife-2` | `videos/YoungLife-2-New.mp4` | Videos section |
 
-Upload the `.mp4` to the same folder on the media host, then add a line to
-`YL_VIDEOS` in `js/config.js`:
+## To change a video
 
-```js
-{
-  file:   "MyNewFilm",    // filename WITHOUT the extension
-  title:  "What the film is",
-  blurb:  "One sentence about it.",
-  poster: "campHero",     // any key from YL_IMAGES
-  scene:  "forest",       // forest | fire | archive | ridge | people | water | stone | sun
-  dur:    "06:40",        // leave "" to hide the label
-  featured: true          // optional: the large player at the top
-}
-```
+1. Upload the new `.mp4` to the R2 bucket at the correct path
+2. Update the filename in the function's `ALLOWED_VIDEOS` object
+3. Redeploy
 
-`VIDEO_DIR` at the top of the same file is the base URL every `file:` entry
-hangs off, so moving all three films to another host is one line.
+## To add a fourth video
 
-The Videos section rebuilds itself from that list — add, remove or reorder
-freely. `years: true` puts a film in the 25 Years section as well.
+1. Upload the file to `videos/` in R2
+2. Add an entry to `ALLOWED_VIDEOS` in the function
+3. Add an entry to `YL_VIDEOS` in `js/config.js` with the same ID as `file:`
+4. Change `VIDEO_DIR` to `/video/` (already done) or it will work automatically
+5. Redeploy
 
-## Things that quietly break this
+## Format requirements
 
-- **Filenames are case-sensitive on the server**, even though Windows and
-  macOS let it slide locally. `younglife-2-new.mp4` and `YoungLife-2-New.mp4` are two
-  different files once it is live.
-- **Encode as MP4 (H.264 + AAC) with the "web optimized" / faststart flag
-  set.** That flag moves the file's index to the front so playback can begin
-  before the whole thing downloads; without it a film feels broken on a slow
-  connection. HandBrake's "Fast 1080p30" preset plus the Web Optimized tick
-  does both, and usually turns a 600 MB export into 40–120 MB.
-- **CORS is not needed** for a plain `<video>` tag, but the host must send
-  `Accept-Ranges: bytes` or visitors cannot skip forward. Both Cloudflare R2
-  and any normal static host do this by default.
-- **Check it signed out.** Open the site in a private window and press play
-  on all three before launch.
+- **MP4 (H.264 + AAC)** with faststart flag set (so playback starts before the whole file is downloaded)
+- HandBrake's "Fast 1080p30" preset + Web Optimized tick usually produces 40–120 MB from a 600 MB export
 
-## Other formats
+## The pages function
 
-The player tries `.mp4`, then `.webm`, then `.mov` under the same name, so a
-`.webm` alongside the `.mp4` will be used by browsers that prefer it. `.mov`
-is a fallback of last resort and is not reliable everywhere — convert it.
-
-## If films stall on slow phones
-
-One file is served at one quality to everyone. **Cloudflare Stream**
-re-encodes each film into several qualities and picks per viewer; it bills
-$5 per 1,000 minutes stored and $1 per 1,000 minutes watched, so three films
-of roughly 90 minutes runs about $1–2/month. The code already supports it:
-use `stream: "VIDEO_UID"` in place of `file:`, and put the account code from
-the embed URL into `STREAM_CUSTOMER` at the top of `js/config.js`.
-
-## Posters
-
-The frame shown before play is a photograph from `images/`, set per film by
-the `poster` key. The 25 Years section's copy is built from the same entry.
+- File: `functions/video/[[path]].js`
+- Binding: `MEDIA` (connected to the private `younglife-media` R2 bucket in `wrangler.toml`)
+- Behavior: strips file extensions (.mp4, .webm, .mov) from the URL, serves the protected video with proper headers

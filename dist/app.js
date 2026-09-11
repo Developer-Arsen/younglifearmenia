@@ -168,10 +168,10 @@ const YL_IMAGES = {
    ------------------------------------------------------------ */
 
 /* Where `file:` videos are served from. Keep the trailing slash.
-   Currently the media subdomain, where the three films are hosted.
-   "videos/" would serve them from this repo instead, which a
-   Cloudflare Pages deploy rejects for anything over 25 MiB. */
-const VIDEO_DIR = "https://media.younglifearmenia.com/videos/";
+   The /video/ endpoint, which streams from R2 via a Pages Function.
+   Videos are protected: only these three IDs are allowed to stream,
+   and the R2 bucket itself is not publicly accessible. */
+const VIDEO_DIR = "/video/";
 
 /* Only for `stream:`. Copy the customer code out of the embed URL
    Cloudflare shows on the Stream dashboard — it looks like
@@ -189,7 +189,7 @@ const VIDEO_FORMATS = [
 
 const YL_VIDEOS = [
   {
-    file:   "CampTourWithLeeAnn",
+    file:   "camp-tour",
     title:  "A tour of Pioneer Camp with Lee Ann",
     blurb:  "A walk through the camp — the buildings, the grounds and what happens in them.",
     poster: "campHero",
@@ -198,7 +198,7 @@ const YL_VIDEOS = [
     featured: true
   },
   {
-    file:   "YoungLife25thbirthdayFullHD",
+    file:   "25-years",
     title:  "25 years of Young Life Armenia",
     blurb:  "The anniversary film: archive footage and today's camp, twenty-five years side by side.",
     poster: "arch3",
@@ -207,7 +207,7 @@ const YL_VIDEOS = [
     years:  true
   },
   {
-    file:   "YoungLife-2-New",
+    file:   "younglife-2",
     /* TODO: rename this once someone confirms what the film is. */
     title:  "Young Life Armenia",
     blurb:  "<span class=\"ph\">A short description of this film</span>",

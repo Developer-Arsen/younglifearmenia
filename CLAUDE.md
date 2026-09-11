@@ -119,7 +119,7 @@ sed -i 's/?v=20/?v=21/g' index.html    # then ./build.sh
 loaded the site on `localhost:8000` will happily reuse old files and show you a
 stale, sometimes broken page. The version parameter makes that impossible.
 `build.sh` carries the same number onto `dist/styles.css` and `dist/app.js`.
-Current version: **23**.
+Current version: **24**.
 
 ## Two safety nets, do not remove
 
@@ -172,9 +172,10 @@ Everything the Young Life Armenia team has to supply:
 - A high-resolution original of the Water Games group shot. The copy supplied
   is 724px wide, so it spans two columns rather than four (see the note in
   `css/responsive.css`). Widen it once a larger file arrives.
-- Confirm the mission-year figures. The "In numbers" block is headed as if
-  it covers all twenty-five years, but the footnote dates it to mission
-  year-end May 2025. One of the two is wrong.
+- **Video streaming is now protected.** Videos are no longer directly accessible
+  from R2; they stream through a Cloudflare Pages Function at `/video/<id>` which
+  validates each request. The R2 bucket is private. Deploy with
+  `wrangler deploy` to activate the function.
 - The real domain (`example.org` in `index.html`, `robots.txt`, `sitemap.xml`)
 - Every value marked with `class="ph"`: founding dates, phone, email,
   testimonial names, article dates
