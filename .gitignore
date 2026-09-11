@@ -1,4 +1,6 @@
 # Build output
+# dist/ is the deploy artifact for wrangler; it must be committed
+# unless the Cloudflare build command runs ./build.sh first.
 dist/
 node_modules/
 

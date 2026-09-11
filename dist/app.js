@@ -168,9 +168,10 @@ const YL_IMAGES = {
    ------------------------------------------------------------ */
 
 /* Where `file:` videos are served from. Keep the trailing slash.
-   Direct R2 public URL with Cloudflare CDN caching.
-   Make sure the R2 bucket's public access is restricted to these three files only. */
-const VIDEO_DIR = "https://younglife-media.r2.cloudflarecdn.com/";
+   The site's own /video/ endpoint, served by the Worker in
+   src/index.js, which streams from the private R2 bucket. The
+   three ids below are the only keys the Worker will serve. */
+const VIDEO_DIR = "/video/";
 
 /* Only for `stream:`. Copy the customer code out of the embed URL
    Cloudflare shows on the Stream dashboard — it looks like
@@ -188,7 +189,7 @@ const VIDEO_FORMATS = [
 
 const YL_VIDEOS = [
   {
-    file:   "CampTourWithLeeAnn",
+    file:   "camp-tour",
     title:  "A tour of Pioneer Camp with Lee Ann",
     blurb:  "A walk through the camp — the buildings, the grounds and what happens in them.",
     poster: "campHero",
@@ -197,7 +198,7 @@ const YL_VIDEOS = [
     featured: true
   },
   {
-    file:   "YoungLife25thbirthdayFullHD",
+    file:   "25-years",
     title:  "25 years of Young Life Armenia",
     blurb:  "The anniversary film: archive footage and today's camp, twenty-five years side by side.",
     poster: "arch3",
@@ -206,7 +207,7 @@ const YL_VIDEOS = [
     years:  true
   },
   {
-    file:   "YoungLife-2-New",
+    file:   "younglife-2",
     /* TODO: rename this once someone confirms what the film is. */
     title:  "Young Life Armenia",
     blurb:  "<span class=\"ph\">A short description of this film</span>",
