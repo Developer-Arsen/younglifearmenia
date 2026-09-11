@@ -1,6 +1,11 @@
 name = "younglifearmenia"
 compatibility_date = "2024-01-01"
 
+[env.production]
+routes = [
+  { pattern = "younglifearmenia.com/*", zone_name = "younglifearmenia.com" }
+]
+
 [[r2_buckets]]
 binding = "MEDIA"
 bucket_name = "younglife-media"
