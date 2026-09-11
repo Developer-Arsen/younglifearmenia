@@ -205,7 +205,7 @@ const YL_VIDEOS = [
     years:  true
   },
   {
-    file:   "YoungLife2",
+    file:   "YoungLife-2-New",
     /* TODO: rename this once someone confirms what the film is. */
     title:  "Young Life Armenia",
     blurb:  "<span class=\"ph\">A short description of this film</span>",

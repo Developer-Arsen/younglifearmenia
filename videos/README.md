@@ -12,7 +12,7 @@ on demand:
 
     https://media.younglifearmenia.com/videos/CampTourWithLeeAnn.mp4
     https://media.younglifearmenia.com/videos/YoungLife25thbirthdayFullHD.mp4
-    https://media.younglifearmenia.com/videos/YoungLife2.mp4
+    https://media.younglifearmenia.com/videos/YoungLife-2-New.mp4
 
 Nothing is requested until a visitor presses play. Until then each slot
 shows a poster photograph from `images/`, like the rest of the page.
@@ -51,7 +51,7 @@ freely. `years: true` puts a film in the 25 Years section as well.
 ## Things that quietly break this
 
 - **Filenames are case-sensitive on the server**, even though Windows and
-  macOS let it slide locally. `younglife2.mp4` and `YoungLife2.mp4` are two
+  macOS let it slide locally. `younglife-2-new.mp4` and `YoungLife-2-New.mp4` are two
   different files once it is live.
 - **Encode as MP4 (H.264 + AAC) with the "web optimized" / faststart flag
   set.** That flag moves the file's index to the front so playback can begin
