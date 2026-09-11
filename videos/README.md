@@ -1,53 +1,61 @@
 ---
 name: videos
-description: Videos are protected via a Cloudflare Pages Function that streams from a private R2 bucket. This folder is empty.
+description: The three films are on a Cloudflare R2 bucket, streamed via CDN. The folder is empty.
 ---
 
-# Videos — Protected Streaming
+# Videos
 
-**This folder is empty on purpose.** The three films are hosted on a private Cloudflare R2 bucket and streamed through a Pages Function at `/video/<id>`, which validates requests and controls access.
+**This folder is empty on purpose.** The films are hosted on a private Cloudflare R2 bucket and served via Cloudflare's CDN at:
+
+```
+https://younglife-media.r2.cloudflarecdn.com/videos/
+```
+
+The bucket itself is **private** — visitors can only access these three files:
+
+- `CampTourWithLeeAnn.mp4` — Camp tour
+- `YoungLife25thbirthdayFullHD.mp4` — 25th anniversary film  
+- `YoungLife-2-New.mp4` — Young Life Armenia
 
 ## How it works
 
-1. **Pages Function** (`functions/video/[[path]].js`) intercepts `/video/<id>` requests
-2. **Whitelist check** — only these three video IDs are allowed:
-   - `camp-tour` → CampTourWithLeeAnn.mp4
-   - `25-years` → YoungLife25thbirthdayFullHD.mp4
-   - `younglife-2` → YoungLife-2-New.mp4
-3. **R2 fetch** — function retrieves the file from the private bucket
-4. **Stream** — returns the video with proper headers (Accept-Ranges, Cache-Control, etc.)
-
-A visitor can only access videos through the website. The R2 bucket itself is never publicly accessible.
-
-## The mapping
-
-| Video ID | R2 key | Page |
-|---|---|---|
-| `camp-tour` | `videos/CampTourWithLeeAnn.mp4` | Videos section (large player) |
-| `25-years` | `videos/YoungLife25thbirthdayFullHD.mp4` | 25 Years section + Videos |
-| `younglife-2` | `videos/YoungLife-2-New.mp4` | Videos section |
+1. Videos are in `younglife-media` R2 bucket (private)
+2. Only the three files above have public read access
+3. Cloudflare CDN caches them at the edge for fast delivery worldwide
+4. Accept-Ranges header is set, so visitors can skip/scrub through videos
 
 ## To change a video
 
-1. Upload the new `.mp4` to the R2 bucket at the correct path
-2. Update the filename in the function's `ALLOWED_VIDEOS` object
-3. Redeploy
+1. Upload new `.mp4` to `younglife-media` R2 bucket in the `videos/` folder
+2. If replacing a file, use the exact same name (or update the name in `js/config.js`)
+3. Make sure the file has public read access in R2
+4. Redeploy the site (builds will pick up `VIDEO_DIR` from config)
 
 ## To add a fourth video
 
-1. Upload the file to `videos/` in R2
-2. Add an entry to `ALLOWED_VIDEOS` in the function
-3. Add an entry to `YL_VIDEOS` in `js/config.js` with the same ID as `file:`
-4. Change `VIDEO_DIR` to `/video/` (already done) or it will work automatically
-5. Redeploy
+1. Upload `.mp4` to `videos/` in R2, e.g. `MyNewFilm.mp4`
+2. Add entry to `YL_VIDEOS` in `js/config.js`:
+   ```js
+   {
+     file:   "MyNewFilm",
+     title:  "What the film is",
+     blurb:  "One sentence.",
+     poster: "campHero",
+     scene:  "forest",
+     dur:    "06:40"
+   }
+   ```
+3. Redeploy
 
-## Format requirements
+## Video format
 
-- **MP4 (H.264 + AAC)** with faststart flag set (so playback starts before the whole file is downloaded)
-- HandBrake's "Fast 1080p30" preset + Web Optimized tick usually produces 40–120 MB from a 600 MB export
+- **MP4 (H.264 + AAC)** with faststart flag
+- HandBrake "Fast 1080p30" preset + Web Optimized tick usually gives 40–120 MB from a 600 MB export
 
-## The pages function
+## R2 bucket setup
 
-- File: `functions/video/[[path]].js`
-- Binding: `MEDIA` (connected to the private `younglife-media` R2 bucket in `wrangler.toml`)
-- Behavior: strips file extensions (.mp4, .webm, .mov) from the URL, serves the protected video with proper headers
+Bucket name: `younglife-media`  
+Location: Automatic  
+Access: Private (only these three files have public access)
+
+The `VIDEO_DIR` in `js/config.js` points to the public CDN URL so videos play directly in the browser's `<video>` tag.
